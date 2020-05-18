@@ -1,0 +1,4 @@
+- hosts: all
+  connection: local
+  roles:
+    - { role: visualcode, tags: ['visualcode_role'], when: ansible_os_family == 'Darwin' }

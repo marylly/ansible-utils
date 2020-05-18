@@ -1,0 +1,24 @@
+---
+- name: Download VisualCode on macOs
+  get_url:
+    url: https://go.microsoft.com/fwlink/?LinkID=620882
+    dest: /tmp
+    mode: 0755
+
+# - name:
+#   debug: var=ansible_facts
+#   when: ansible_facts['os_family'] == "Darwin"
+
+- name: Uncompress VisualCode installation
+  unarchive:
+    src: /tmp/VSCode-darwin-stable.zip
+    dest: /tmp/
+
+- name: Set VisualCode app into Application
+  command: mv "/tmp/Visual Studio Code.app" /Applications/
+
+- name: Remove installation package from machine
+  file:
+    path: /tmp/VSCode-darwin-stable.zip
+    state: absent
+  
