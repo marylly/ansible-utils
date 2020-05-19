@@ -43,3 +43,9 @@
   command: code --install-extension editorconfig.editorconfig
   tags:
   - default_extensions
+
+- name: Git Project Manager extension installation
+  command: code --install-extension felipecaputo.git-project-manager
+  tags:
+  - default_extensions
+  - developer_extensions
