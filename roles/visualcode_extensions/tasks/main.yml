@@ -179,3 +179,9 @@
   - default_extensions
   - frontend_extensions
   - javascript_extensions
+
+- name: Python extension installation
+  command: code --install-extension ms-python.python
+  tags:
+  - developer_extensions
+  - python_extensions
