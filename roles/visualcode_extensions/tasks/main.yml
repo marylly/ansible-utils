@@ -43,6 +43,12 @@
   - ansible_extensions
   - devops_extensions
 
+- name: Terraform extension installation
+  command: code --install-extension mauve.terraform
+  tags:
+  - terraform_extensions
+  - devops_extensions
+
 - name: CircleCI extension installation
   command: code --install-extension jvandyke.vscode-circleci
   tags:
