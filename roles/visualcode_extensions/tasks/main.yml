@@ -42,6 +42,11 @@
   - default_extensions
   - frontend_extensions
 
+- name: Wakatime extension installation
+  command: code --install-extension wakatime.vscode-wakatime
+  tags:
+  - default_extensions
+
 - name: Ansible extension installation
   command: code --install-extension vscoss.vscode-ansible
   tags:
