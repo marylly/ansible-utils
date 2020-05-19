@@ -32,3 +32,9 @@
   tags:
   - developer_extensions
   - java_extensions
+
+- name: Docker extension installation
+  command: code --install-extension ms-azuretools.vscode-docker
+  tags:
+  - infra_extensions
+  - devops_extensions
