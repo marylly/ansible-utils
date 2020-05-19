@@ -79,3 +79,9 @@
   tags:
   - golang_extensions
   - developer_extensions
+
+- name: Golang TDD extension installation
+  command: code --install-extension joaoacdias.golang-tdd
+  tags:
+  - golang_extensions
+  - developer_extensions
