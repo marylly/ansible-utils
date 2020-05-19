@@ -1,0 +1,25 @@
+---
+# tasks file for studying_tools
+  - name: Download Exercism CLI
+    get_url:
+      url: https://github.com/exercism/cli/releases/download/v3.0.13/exercism-3.0.13-linux-x86_64.tar.gz
+      dest: /tmp/exercism.tar.gz
+
+  - name: Uncompress the installation package
+    command: tar -zxf /tmp/exercism.tar.gz -C /tmp
+
+  - name: Copy the Exercism folder to the SO
+    become: yes
+    command: cp -r /tmp/exercism /usr/local/bin
+
+  - name: Remove the installation package
+    become: yes
+    file:
+      path: /tmp/exercism.tar.gz
+      state: absent
+
+  - name: Remove the installation file
+    become: yes
+    file:
+      path: /tmp/exercism
+      state: absent

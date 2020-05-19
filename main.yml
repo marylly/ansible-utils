@@ -6,3 +6,4 @@
     - { role: visualcode_debian, tags: ['visualcode_role'], when: ansible_os_family == 'Debian' }
     - { role: visualcode_extensions, tags: ['visualcode_extensions_role'] }
     - { role: golang, tags: ['golang_role'] }
+    - { role: studying_tools, tags: ['studying_tools_role'] }
