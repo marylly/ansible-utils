@@ -95,3 +95,9 @@
   tags:
   - golang_extensions
   - developer_extensions
+
+- name: Java Dependency Viewer extension installation
+  command: code --install-extension vscjava.vscode-java-dependency
+  tags:
+  - developer_extensions
+  - java_extensions
