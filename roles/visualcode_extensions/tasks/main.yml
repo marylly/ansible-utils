@@ -76,6 +76,12 @@
   - default_extensions
   - developer_extensions
 
+- name: Project Manager extension installation
+  command: code --install-extension alefragnani.project-manager
+  tags:
+  - default_extensions
+  - developer_extensions
+
 - name: Golang extension installation
   command: code --install-extension ms-vscode.go
   tags:
