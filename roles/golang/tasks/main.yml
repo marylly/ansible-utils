@@ -1,0 +1,33 @@
+---
+# tasks file for golang
+  - name: Download Golang package
+    get_url:
+      url: https://dl.google.com/go/go1.14.3.src.tar.gz
+      dest: /tmp/go.tar.gz
+      checksum: sha256:93023778d4d1797b7bc6a53e86c3a9b150c923953225f8a48a2d5fabc971af56
+
+  - name: Uncompress the installation package
+    command: tar -zxf /tmp/go.tar.gz -C /tmp
+
+  - name: Check if exists already a installation
+    stat:
+      path: /usr/local/Cellar/go
+    register: go_folder
+
+  - name: Clean old version
+    file:
+      path: /usr/local/Cellar/go
+      state: absent
+    when: go_folder.stat.exists
+
+  - name: Install Golang
+    shell: ./all.bash
+    args:
+      chdir: /tmp/go/src
+    environment:
+      GOROOT_BOOTSTRAP: /usr/local/Cellar/go
+
+  - name: Remove the installation package
+    file:
+      path: /tmp/go.tar.gz
+      state: absent
