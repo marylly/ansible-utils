@@ -5,6 +5,11 @@
   tags:
   - default_extensions
 
+- name: Icon Fonts extension installation
+  command: code --install-extension idleberg.icon-fonts
+  tags:
+  - default_extensions
+
 - name: Auto Close Tag extension installation
   command: code --install-extension formulahendry.auto-close-tag
   tags:
