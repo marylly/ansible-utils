@@ -15,6 +15,11 @@
   tags:
   - default_extensions
 
+- name: Markdown Preview extension installation
+  command: code --install-extension shd101wyy.markdown-preview-enhanced
+  tags:
+  - default_extensions
+
 - name: Auto Close Tag extension installation
   command: code --install-extension formulahendry.auto-close-tag
   tags:
