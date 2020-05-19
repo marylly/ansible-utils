@@ -101,3 +101,9 @@
   tags:
   - developer_extensions
   - java_extensions
+
+- name: Java Extension Pack extension installation
+  command: code --install-extension vscjava.vscode-java-pack
+  tags:
+  - developer_extensions
+  - java_extensions
