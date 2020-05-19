@@ -5,6 +5,11 @@
   tags:
   - default_extensions
 
+- name: Live Share extension installation
+  command: code --install-extension ms-vsliveshare.vsliveshare
+  tags:
+  - default_extensions
+
 - name: Icon Fonts extension installation
   command: code --install-extension idleberg.icon-fonts
   tags:
