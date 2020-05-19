@@ -27,6 +27,11 @@
   tags:
   - frontend_extensions
 
+- name: HTML Preview extension installation
+  command: code --install-extension tht13.html-preview-vscode
+  tags:
+  - frontend_extensions
+
 - name: Debugger for Java extension installation
   command: code --install-extension vscjava.vscode-java-debug
   tags:
