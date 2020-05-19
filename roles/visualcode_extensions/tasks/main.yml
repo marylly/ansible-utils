@@ -130,6 +130,12 @@
   - developer_extensions
   - java_extensions
 
+- name: Maven for Java extension installation
+  command: code --install-extension vscjava.vscode-maven
+  tags:
+  - developer_extensions
+  - java_extensions
+
 - name: Json extension installation
   command: code --install-extension zainchen.json
   tags:
@@ -147,3 +153,10 @@
   tags:
   - developer_extensions
   - kotlin_extensions
+
+- name: npm extension installation
+  command: code --install-extension eg2.vscode-npm-script
+  tags:
+  - default_extensions
+  - frontend_extensions
+  - javascript_extensions
