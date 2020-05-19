@@ -160,3 +160,10 @@
   - default_extensions
   - frontend_extensions
   - javascript_extensions
+
+- name: npm intellisense extension installation
+  command: code --install-extension christian-kohler.npm-intellisense
+  tags:
+  - default_extensions
+  - frontend_extensions
+  - javascript_extensions
