@@ -125,3 +125,9 @@
   tags:
   - developer_extensions
   - kotlin_extensions
+
+- name: Kotlin Formatter extension installation
+  command: code --install-extension esafirm.kotlin-formatter
+  tags:
+  - developer_extensions
+  - kotlin_extensions
