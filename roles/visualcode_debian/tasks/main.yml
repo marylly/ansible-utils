@@ -1,0 +1,13 @@
+---
+  - name: Update repositories cache and install python-apt package
+    become: yes
+    apt:
+      name: python-apt
+      update_cache: yes
+      state: latest
+
+  - name: VisualCode installation
+    become: yes
+    apt:
+      deb: https://go.microsoft.com/fwlink/?LinkID=760868
+      state: present
