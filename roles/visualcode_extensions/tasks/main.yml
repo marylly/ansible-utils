@@ -26,6 +26,11 @@
   tags:
   - default_extensions
 
+- name: VSCode Icons extension installation
+  command: code --install-extension vscode-icons-team.vscode-icons
+  tags:
+  - default_extensions
+
 - name: Markdown Preview extension installation
   command: code --install-extension shd101wyy.markdown-preview-enhanced
   tags:
@@ -197,3 +202,9 @@
   tags:
   - developer_extensions
   - python_extensions
+
+- name: Travis CI Status extension installation
+  command: code --install-extension jvandyke.vscode-circleci
+  tags:
+  - infra_extensions
+  - devops_extensions
