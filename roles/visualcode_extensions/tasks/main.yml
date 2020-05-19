@@ -61,3 +61,9 @@
   tags:
   - infra_extensions
   - devops_extensions
+
+- name: Go Coverage extension installation
+  command: code --install-extension defaltd.go-coverage-viewer
+  tags:
+  - golang_extensions
+  - developer_extensions
