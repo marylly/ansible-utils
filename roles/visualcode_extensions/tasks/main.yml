@@ -67,3 +67,9 @@
   tags:
   - golang_extensions
   - developer_extensions
+
+- name: Go Critic extension installation
+  command: code --install-extension neverik.go-critic
+  tags:
+  - golang_extensions
+  - developer_extensions
