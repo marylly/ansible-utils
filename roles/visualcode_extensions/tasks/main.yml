@@ -55,3 +55,9 @@
   tags:
   - golang_extensions
   - developer_extensions
+
+- name: GoCD extension installation
+  command: code --install-extension inlustra.vscode-go-cd
+  tags:
+  - infra_extensions
+  - devops_extensions
