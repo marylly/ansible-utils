@@ -73,3 +73,9 @@
   tags:
   - golang_extensions
   - developer_extensions
+
+- name: Go Test Explorer extension installation
+  command: code --install-extension premparihar.gotestexplorer
+  tags:
+  - golang_extensions
+  - developer_extensions
