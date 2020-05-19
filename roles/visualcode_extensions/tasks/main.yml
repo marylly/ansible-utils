@@ -113,3 +113,9 @@
   tags:
   - developer_extensions
   - java_extensions
+
+- name: Json extension installation
+  command: code --install-extension zainchen.json
+  tags:
+  - default_extensions
+  - developer_extensions
