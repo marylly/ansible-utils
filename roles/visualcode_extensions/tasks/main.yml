@@ -107,3 +107,9 @@
   tags:
   - developer_extensions
   - java_extensions
+
+- name: Java Test Runner extension installation
+  command: code --install-extension vscjava.vscode-java-test
+  tags:
+  - developer_extensions
+  - java_extensions
