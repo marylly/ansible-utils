@@ -2,6 +2,10 @@
 # tasks file for visualcode_extensions
 - name: Terminal extension installation
   command: code --install-extension formulahendry.terminal
+  tags:
+  - default_extensions
 
 - name: Ansible extension installation
   command: code --install-extension vscoss.vscode-ansible
+  tags:
+  - ansible_extensions
