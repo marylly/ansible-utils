@@ -99,6 +99,12 @@
   - default_extensions
   - developer_extensions
 
+- name: VSCode Open Project extension installation
+  command: code --install-extension svetlozarangelov.vscode-open-project
+  tags:
+  - default_extensions
+  - developer_extensions
+
 - name: Golang extension installation
   command: code --install-extension ms-vscode.go
   tags:
