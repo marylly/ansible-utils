@@ -4,5 +4,5 @@
   roles:
     - { role: visualcode_macos, tags: ['visualcode_role'], when: ansible_os_family == 'Darwin' }
     - { role: visualcode_debian, tags: ['visualcode_role'], when: ansible_os_family == 'Debian' }
-    - { role: visualcode_extensions, tags: ['visualcode_role'] }
+    - { role: visualcode_extensions, tags: ['visualcode_extensions_role'] }
     - { role: golang, tags: ['golang_role'] }
