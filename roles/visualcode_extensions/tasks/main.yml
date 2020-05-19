@@ -41,6 +41,7 @@
   command: code --install-extension vscoss.vscode-ansible
   tags:
   - ansible_extensions
+  - devops_extensions
 
 - name: CircleCI extension installation
   command: code --install-extension jvandyke.vscode-circleci
