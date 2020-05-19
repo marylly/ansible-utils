@@ -26,3 +26,9 @@
   command: code --install-extension anseki.vscode-color
   tags:
   - frontend_extensions
+
+- name: Debugger for Java extension installation
+  command: code --install-extension vscjava.vscode-java-debug
+  tags:
+  - developer_extensions
+  - java_extensions
