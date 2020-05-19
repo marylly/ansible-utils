@@ -5,6 +5,11 @@
   tags:
   - default_extensions
 
+- name: Terminal Tabs extension installation
+  command: code --install-extension tyriar.terminal-tabs
+  tags:
+  - default_extensions
+
 - name: Live Share extension installation
   command: code --install-extension ms-vsliveshare.vsliveshare
   tags:
