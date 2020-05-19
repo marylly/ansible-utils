@@ -38,3 +38,8 @@
   tags:
   - infra_extensions
   - devops_extensions
+
+- name: EditorConfig extension installation
+  command: code --install-extension editorconfig.editorconfig
+  tags:
+  - default_extensions
