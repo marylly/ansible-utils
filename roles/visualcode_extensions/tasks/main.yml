@@ -114,6 +114,12 @@
   - developer_extensions
   - java_extensions
 
+- name: Language Support for Java extension installation
+  command: code --install-extension redhat.java
+  tags:
+  - developer_extensions
+  - java_extensions
+
 - name: Json extension installation
   command: code --install-extension zainchen.json
   tags:
