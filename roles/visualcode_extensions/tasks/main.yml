@@ -5,6 +5,12 @@
   tags:
   - default_extensions
 
+- name: Auto Close Tag extension installation
+  command: code --install-extension formulahendry.auto-close-tag
+  tags:
+  - default_extensions
+  - frontend_extensions
+
 - name: Ansible extension installation
   command: code --install-extension vscoss.vscode-ansible
   tags:
