@@ -119,3 +119,9 @@
   tags:
   - default_extensions
   - developer_extensions
+
+- name: Kotlin extension installation
+  command: code --install-extension fwcd.kotlin
+  tags:
+  - developer_extensions
+  - kotlin_extensions
