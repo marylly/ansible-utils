@@ -21,3 +21,8 @@
   tags:
   - infra_extensions
   - devops_extensions
+
+- name: Color Picker extension installation
+  command: code --install-extension anseki.vscode-color
+  tags:
+  - frontend_extensions
