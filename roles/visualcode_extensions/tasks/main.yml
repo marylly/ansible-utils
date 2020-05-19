@@ -10,6 +10,12 @@
   tags:
   - default_extensions
 
+- name: Prettier Code Formatter extension installation
+  command: code --install-extension esbenp.prettier-vscode
+  tags:
+  - default_extensions
+  - developer_extensions
+
 - name: Icon Fonts extension installation
   command: code --install-extension idleberg.icon-fonts
   tags:
