@@ -1,0 +1,25 @@
+---
+# tasks file for docker_macos
+  - name: Download Docker Package
+    get_url:
+      url: https://download.docker.com/mac/stable/Docker.dmg
+      dest: /tmp/Docker.dmg
+
+  - name: Docker package uncompress
+    become: yes
+    command: hdiutil attach /tmp/Docker.dmg
+
+  - name: Docker package installation
+    become: yes
+    command: cp -r /Volumes/Docker/Docker.app /Applications
+
+  - name: Remove installation package
+    file:
+      path: /tmp/Docker.dmg
+      state: absent
+
+  - name: Verifing Docker version installed
+    command: docker version
+    register: docker_version
+
+  - debug: msg="{{ docker_version.stdout }}"

@@ -8,3 +8,4 @@
     - { role: golang_debian, tags: ['golang_role'], when: ansible_os_family == 'Debian' }
     - { role: golang_macos, tags: ['golang_role'], when: ansible_os_family == 'Darwin' }
     - { role: studying_tools, tags: ['studying_tools_role'] }
+    - { role: docker_macos, tags: ['docker_role'], when: ansible_os_family == 'Darwin' }
