@@ -1,0 +1,35 @@
+---
+# tasks file for golang_macos
+  - name: Check if exists already a installation
+    stat:
+      path: /usr/local/go
+    register: go_folder
+
+  - name: Clean old version
+    become: yes
+    file:
+      path: /usr/local/go
+      state: absent
+    when: go_folder.stat.exists
+
+  - name: Download Golang package
+    get_url:
+      url: https://dl.google.com/go/go1.14.3.darwin-amd64.pkg
+      dest: /tmp/go.pkg
+      checksum: sha256:05cb5531fd429aa5a13605a30aed5584d95a134d6edbf5e9ac174156390d423a
+
+  - name: Golang package installation
+    become: yes
+    command: installer -pkg /tmp/go.pkg -target /
+
+  - name: Remove the installation package
+    become: yes
+    file:
+      path: /tmp/go.pkg
+      state: absent
+
+  - name: Verifing Go version installed
+    command: go version
+    register: go_version
+
+  - debug: msg="{{ go_version.stdout }}"
