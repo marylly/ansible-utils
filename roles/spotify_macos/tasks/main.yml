@@ -2,18 +2,25 @@
 # tasks file for spotify_macos
   - name: Download Spotify Package
     get_url:
-      url: https://download.scdn.co/Spotify-0.8.5.dmg
-      dest: /tmp/Spotify.dmg
+      url: https://download.scdn.co/SpotifyInstaller.zip
+      dest: /tmp/Spotify.zip
 
-  - name: Spotify package uncompress
-    become: yes
-    command: hdiutil attach /tmp/Spotify.dmg
+  - name: Uncompress installation package
+    command: unzip /tmp/Spotify.zip -d /tmp/Spotify
 
-  - name: Spotify package installation
+  - name: move Spotify package installation to MacOs Applications
     become: yes
-    command: cp -r /Volumes/Spotify/Spotify.app /Applications
+    command: cp -r "/tmp/Spotify/Install Spotify.app" /Applications
+
+  - name: Spotify installation
+    command: open -a /Applications/Install\ Spotify.app
+
+  - name: Remove installation package folder
+    file:
+      path: /tmp/Spotify
+      state: absent
 
   - name: Remove installation package
     file:
-      path: /tmp/Spotify.dmg
+      path: /tmp/Spotify.zip
       state: absent
