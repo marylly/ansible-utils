@@ -1,0 +1,23 @@
+---
+# tasks file for google_chrome_role
+  - name: Download Google Chrome Package
+    get_url:
+      url: https://dl.google.com/chrome/mac/universal/stable/GGRO/googlechrome.dmg
+      dest: /tmp/googlechrome.dmg
+
+  - name: Google Chrome package uncompress
+    become: yes
+    command: hdiutil attach /tmp/googlechrome.dmg
+
+  - name: Google Chrome package installation
+    become: yes
+    command: cp -r /Volumes/"Google Chrome"/"Google Chrome.app" /Applications
+
+  - name: Google Chrome package umounting
+    become: yes
+    command: hdiutil detach /Volumes/Google\ Chrome
+
+  - name: Remove installation package
+    file:
+      path: /tmp/googlechrome.dmg
+      state: absent
