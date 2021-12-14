@@ -11,3 +11,4 @@
     - { role: studying_tools, tags: ['studying_tools_role'] }
     - { role: docker_macos, tags: ['docker_role'], when: ansible_os_family == 'Darwin' }
     - { role: spotify_macos, tags: ['spotify_role'], when: ansible_os_family == 'Darwin' }
+    - { role: telegram_macos, tags: ['telegram_role'], when: ansible_os_family == 'Darwin' }
