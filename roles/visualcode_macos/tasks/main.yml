@@ -7,7 +7,7 @@
 
 - name: Uncompress VisualCode installation
   unarchive:
-    src: /tmp/VSCode-darwin-stable.zip
+    src: /tmp/VSCode-darwin.zip
     dest: /tmp/
 
 - name: Set VisualCode app into Application
@@ -15,6 +15,6 @@
 
 - name: Remove installation package from machine
   file:
-    path: /tmp/VSCode-darwin-stable.zip
+    path: /tmp/VSCode-darwin.zip
     state: absent
   
