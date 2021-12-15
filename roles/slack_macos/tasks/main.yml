@@ -1,0 +1,23 @@
+---
+# tasks file for slack_macos
+  - name: Download Slack Package
+    get_url:
+      url: https://downloads.slack-edge.com/releases/macos/4.23.0/prod/universal/Slack-4.23.0-macOS.dmg
+      dest: /tmp/slack.dmg
+
+  - name: Slack package uncompress
+    become: yes
+    command: hdiutil attach /tmp/slack.dmg
+
+  - name: Slack package installation
+    become: yes
+    command: cp -r /Volumes/Slack/Slack.app /Applications
+
+  - name: Slack package umounting
+    become: yes
+    command: hdiutil detach /Volumes/Slack
+
+  - name: Remove installation package
+    file:
+      path: /tmp/slack.dmg
+      state: absent
