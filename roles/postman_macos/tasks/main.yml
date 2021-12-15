@@ -1,0 +1,23 @@
+---
+# tasks file for postman_macos
+  - name: Download Postman Package
+    get_url:
+      url: https://dl.pstmn.io/download/latest/osx_arm64
+      dest: /tmp/Postman.zip
+
+  - name: Uncompress installation package
+    command: unzip /tmp/Postman.zip -d /tmp/Postman
+
+  - name: move Postman package installation to MacOs Applications
+    become: yes
+    command: cp -r /tmp/Postman/Postman.app /Applications
+
+  - name: Remove installation package folder
+    file:
+      path: /tmp/Postman
+      state: absent
+
+  - name: Remove installation package
+    file:
+      path: /tmp/Postman.zip
+      state: absent
