@@ -1,0 +1,23 @@
+---
+# tasks file for gimp_macos
+  - name: Download Gimp Package
+    get_url:
+      url: https://download.gimp.org/mirror/pub/gimp/v2.10/osx/gimp-2.10.28-x86_64.dmg
+      dest: /tmp/Gimp.dmg
+
+  - name: Gimp package uncompress
+    become: yes
+    command: hdiutil attach /tmp/Gimp.dmg
+
+  - name: Gimp package installation
+    become: yes
+    command: cp -r /Volumes/Gimp\ 2.10\ Install/Gimp-2.10.app /Applications
+
+  - name: Gimp package umounting
+    become: yes
+    command: hdiutil detach /Volumes/Gimp\ 2.10\ Install
+
+  - name: Remove installation package
+    file:
+      path: /tmp/Gimp.dmg
+      state: absent

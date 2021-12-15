@@ -1,0 +1,23 @@
+---
+# tasks file for firefox_macos
+  - name: Download Firefox Package
+    get_url:
+      url: https://download-installer.cdn.mozilla.net/pub/firefox/releases/95.0/mac/pt-BR/Firefox%2095.0.dmg
+      dest: /tmp/firefox.dmg
+
+  - name: Firefox package uncompress
+    become: yes
+    command: hdiutil attach /tmp/firefox.dmg
+
+  - name: Firefox package installation
+    become: yes
+    command: cp -r /Volumes/Firefox/Firefox.app /Applications
+
+  - name: Firefox package umounting
+    become: yes
+    command: hdiutil detach /Volumes/Firefox
+
+  - name: Remove installation package
+    file:
+      path: /tmp/firefox.dmg
+      state: absent
