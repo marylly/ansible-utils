@@ -1,0 +1,19 @@
+---
+# tasks file for vnc_macos
+  - name: Download VNC Package
+    get_url:
+    url: https://www.realvnc.com/download/file/viewer.files/VNC-Viewer-6.20.113-MacOSX-x86_64.dmg
+    dest: /tmp/VNC.dmg
+
+  - name: VNC package uncompress
+    become: yes
+    command: hdiutil attach /tmp/VNC.dmg
+
+  - name: VNC package installation
+    become: yes
+    command: cp -r /Volumes/VNC/VNC.app /Applications
+
+  - name: Remove installation package
+    file:
+      path: /tmp/VNC.dmg
+      state: absent
