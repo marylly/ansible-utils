@@ -1,0 +1,13 @@
+---
+# tasks file for node_macos
+  - name: Download NodeJS v14
+    shell: source ~/.zshrc && nvm install v14.18.2
+
+  - name: Set default node version
+    shell: source ~/.zshrc && nvm use v14.18.2
+
+  - name: Verifing Node version installed activated
+    command: node -v
+    register: node_version
+
+  - debug: msg="{{ node_version.stdout }}"
