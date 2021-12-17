@@ -12,6 +12,7 @@
     - { role: docker_macos, tags: ['docker_role'], when: ansible_os_family == 'Darwin' }
     - { role: firefox_macos, tags: ['firefox_role'], when: ansible_os_family == 'Darwin' }
     - { role: gimp_macos, tags: ['gimp_role'], when: ansible_os_family == 'Darwin' }
+    - { role: nvm_macos, tags: ['nvm_role'], when: ansible_os_family == 'Darwin' }
     - { role: postman_macos, tags: ['postman_role'], when: ansible_os_family == 'Darwin' }
     - { role: slack_macos, tags: ['slack_role'], when: ansible_os_family == 'Darwin' }
     - { role: spotify_macos, tags: ['spotify_role'], when: ansible_os_family == 'Darwin' }

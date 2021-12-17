@@ -1,0 +1,19 @@
+---
+# tasks file for nvm_macos
+  - name: Download NVM - Node Vesion Manager
+    get_url: 
+      url: https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh
+      dest: /tmp/nvm.sh
+      mode: 0755
+
+  - name: Install NVM - Node Vesion Manager
+    command: bash -c /tmp/nvm.sh
+
+  - name: Add NVM to bin folder terminal commands
+    command: echo 'export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")" [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> ~/.zshrc
+
+  - name: Verifing NVM version installed
+    shell: source ~/.zshrc && nvm -v
+    register: nvm_version
+
+  - debug: msg="{{ nvm_version.stdout }}"
