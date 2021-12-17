@@ -1,0 +1,16 @@
+---
+# tasks file for zoom_macos
+  - name: Download Zoom package
+    get_url:
+      url: https://zoom.us/client/latest/Zoom.pkg
+      dest: /tmp/zoom.pkg
+
+  - name: Zoom package installation
+    become: yes
+    command: installer -pkg /tmp/zoom.pkg -target /
+
+  - name: Remove the installation package
+    become: yes
+    file:
+      path: /tmp/zoom.pkg
+      state: absent
