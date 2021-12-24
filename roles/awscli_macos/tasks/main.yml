@@ -1,0 +1,22 @@
+---
+# tasks file for awscli_macos
+  - name: Download AWS CLI package
+    get_url:
+      url: https://awscli.amazonaws.com/AWSCLIV2.pkg
+      dest: /tmp/AWSCLIV2.pkg
+
+  - name: AWS CLI package installation
+    become: yes
+    command: installer -pkg /tmp/AWSCLIV2.pkg -target /
+
+  - name: Remove the installation package
+    become: yes
+    file:
+      path: /tmp/AWSCLIV2.pkg
+      state: absent
+
+  - name: Verifing AWS CLI version installed
+    command: aws version
+    register: awscli_version
+
+  - debug: msg="{{ awscli_version.stdout }}"
