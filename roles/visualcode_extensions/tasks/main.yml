@@ -219,3 +219,9 @@
   tags:
   - infra_extensions
   - devops_extensions
+
+- name: Git Lens extension installation
+  command: code --install-extension eamodio.gitlens
+  tags:
+  - developer_extensions
+  - devops_extensions
