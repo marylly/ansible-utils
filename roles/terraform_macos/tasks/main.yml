@@ -1,0 +1,7 @@
+---
+# tasks file for terraform_macos
+  - name: Install Terraform 0.12.31
+    command: tfenv install 0.12.31
+
+  - name: Set to use Terraform 0.12.31
+    command: tfenv use 0.12.31

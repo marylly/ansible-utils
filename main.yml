@@ -20,4 +20,5 @@
     - { role: spotify_macos, tags: ['spotify_role'], when: ansible_os_family == 'Darwin' }
     - { role: telegram_macos, tags: ['telegram_role'], when: ansible_os_family == 'Darwin' }
     - { role: tfenv_macos, tags: ['tfenv_role'], when: ansible_os_family == 'Darwin' }
+    - { role: terraform_macos, tags: ['terraform_role'], when: ansible_os_family == 'Darwin' }
     - { role: zoom_macos, tags: ['zoom_role'], when: ansible_os_family == 'Darwin' }
