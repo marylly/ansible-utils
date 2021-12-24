@@ -1,0 +1,15 @@
+---
+# tasks file for tfenv_macos
+  - name: Clone TFEnv - Terraform Environments
+    ansible.builtin.git:
+      repo: https://github.com/tfutils/tfenv.git
+      dest: ${HOME}/.tfenv
+
+  - name: Create binaries symbolic link 
+    shell: ln -s ~/.tfenv/bin/* /usr/local/bin
+
+  - name: Verifing TFEnv version installed
+    command: tfenv
+    register: tfenv_version
+
+  - debug: msg="{{ tfenv_version.stdout }}"
