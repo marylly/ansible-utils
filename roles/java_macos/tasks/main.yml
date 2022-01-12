@@ -1,0 +1,23 @@
+---
+# tasks file for java_macos
+- name: Download Java Runtime Package
+  get_url:
+    url: https://www.techspot.com/downloads/downloadnow/5553/?evp=4e8f91bc4592f378d8e1c3fd1f94750d&file=6311
+    dest: /tmp/java.dmg
+
+- name: Java Runtime package uncompress
+  become: yes
+  command: hdiutil attach /tmp/java.dmg
+
+- name: Java Installation package installation
+  become: yes
+  command: installer -pkg /Volumes/"JDK 11.0.13"/"JDK 11.0.13.pkg" -target /
+
+- name: Java Runtime package umounting
+  become: yes
+  command: hdiutil detach /Volumes/"JDK 11.0.13"
+
+- name: Remove installation package
+  file:
+    path: /tmp/java.dmg
+    state: absent
