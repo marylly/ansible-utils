@@ -1,20 +1,20 @@
 ---
 - name: Download VisualCode on macOs
   get_url:
-    url: https://go.microsoft.com/fwlink/?LinkID=620882
-    dest: /tmp
+    url: https://code.visualstudio.com/sha/download?build=stable&os=darwin-universal
+    dest: ./VSCode-darwin.zip
     mode: 0755
 
 - name: Uncompress VisualCode installation
   unarchive:
-    src: /tmp/VSCode-darwin.zip
-    dest: /tmp/
+    src: ./VSCode-darwin.zip
+    dest: ./
 
 - name: Set VisualCode app into Application
-  command: mv "/tmp/Visual Studio Code.app" /Applications/
+  copy: remote_src=True src="./Visual Studio Code.app" dest=/Applications/
 
 - name: Remove installation package from machine
   file:
-    path: /tmp/VSCode-darwin.zip
+    path: ./VSCode-darwin.zip
     state: absent
   

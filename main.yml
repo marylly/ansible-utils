@@ -5,7 +5,7 @@
     - { role: awscli_macos, tags: ['awscli_role'], when: ansible_os_family == 'Darwin' }
     - { role: visualcode_macos, tags: ['visualcode_role'], when: ansible_os_family == 'Darwin' }
     - { role: visualcode_debian, tags: ['visualcode_role'], when: ansible_os_family == 'Debian' }
-    - { role: visualcode_extensions, tags: ['visualcode_extensions_role'] }
+    - { role: visualcode_extensions, tags: ['visualcode_role'] }
     - { role: golang_debian, tags: ['golang_role'], when: ansible_os_family == 'Debian' }
     - { role: golang_macos, tags: ['golang_role'], when: ansible_os_family == 'Darwin' }
     - { role: google_chrome_macos, tags: ['google_chrome_role'], when: ansible_os_family == 'Darwin' }

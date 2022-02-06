@@ -1,227 +1,227 @@
 ---
 # tasks file for visualcode_extensions
 - name: Terminal extension installation
-  command: code --install-extension formulahendry.terminal
+  command: /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code --install-extension formulahendry.terminal
   tags:
   - default_extensions
 
 - name: Terminal Tabs extension installation
-  command: code --install-extension tyriar.terminal-tabs
+  command: /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code --install-extension tyriar.terminal-tabs
   tags:
   - default_extensions
 
 - name: Live Share extension installation
-  command: code --install-extension ms-vsliveshare.vsliveshare
+  command: /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code --install-extension ms-vsliveshare.vsliveshare
   tags:
   - default_extensions
 
 - name: Prettier Code Formatter extension installation
-  command: code --install-extension esbenp.prettier-vscode
+  command: /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code --install-extension esbenp.prettier-vscode
   tags:
   - default_extensions
   - developer_extensions
 
 - name: Icon Fonts extension installation
-  command: code --install-extension idleberg.icon-fonts
+  command: /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code --install-extension idleberg.icon-fonts
   tags:
   - default_extensions
 
 - name: VSCode Icons extension installation
-  command: code --install-extension vscode-icons-team.vscode-icons
+  command: /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code --install-extension vscode-icons-team.vscode-icons
   tags:
   - default_extensions
 
 - name: Markdown Preview extension installation
-  command: code --install-extension shd101wyy.markdown-preview-enhanced
+  command: /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code --install-extension shd101wyy.markdown-preview-enhanced
   tags:
   - default_extensions
 
 - name: Auto Close Tag extension installation
-  command: code --install-extension formulahendry.auto-close-tag
+  command: /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code --install-extension formulahendry.auto-close-tag
   tags:
   - default_extensions
   - frontend_extensions
 
 - name: Wakatime extension installation
-  command: code --install-extension wakatime.vscode-wakatime
+  command: /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code --install-extension wakatime.vscode-wakatime
   tags:
   - default_extensions
 
 - name: Ansible extension installation
-  command: code --install-extension vscoss.vscode-ansible
+  command: /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code --install-extension redhat.ansible
   tags:
   - ansible_extensions
   - devops_extensions
 
 - name: Terraform extension installation
-  command: code --install-extension mauve.terraform
+  command: /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code --install-extension HashiCorp.terraform
   tags:
   - terraform_extensions
   - devops_extensions
 
 - name: CircleCI extension installation
-  command: code --install-extension jvandyke.vscode-circleci
+  command: /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code --install-extension jvandyke.vscode-circleci
   tags:
   - infra_extensions
   - devops_extensions
 
 - name: Color Picker extension installation
-  command: code --install-extension anseki.vscode-color
+  command: /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code --install-extension anseki.vscode-color
   tags:
   - frontend_extensions
 
 - name: HTML Preview extension installation
-  command: code --install-extension tht13.html-preview-vscode
+  command: /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code --install-extension tht13.html-preview-vscode
   tags:
   - frontend_extensions
 
 - name: Debugger for Java extension installation
-  command: code --install-extension vscjava.vscode-java-debug
+  command: /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code --install-extension vscjava.vscode-java-debug
   tags:
   - developer_extensions
   - java_extensions
 
 - name: Docker extension installation
-  command: code --install-extension ms-azuretools.vscode-docker
+  command: /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code --install-extension ms-azuretools.vscode-docker
   tags:
   - infra_extensions
   - devops_extensions
 
 - name: EditorConfig extension installation
-  command: code --install-extension editorconfig.editorconfig
+  command: /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code --install-extension editorconfig.editorconfig
   tags:
   - default_extensions
 
 - name: Git Project Manager extension installation
-  command: code --install-extension felipecaputo.git-project-manager
+  command: /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code --install-extension felipecaputo.git-project-manager
   tags:
   - default_extensions
   - developer_extensions
 
 - name: Project Manager extension installation
-  command: code --install-extension alefragnani.project-manager
+  command: /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code --install-extension alefragnani.project-manager
   tags:
   - default_extensions
   - developer_extensions
 
 - name: VSCode Open Project extension installation
-  command: code --install-extension svetlozarangelov.vscode-open-project
+  command: /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code --install-extension svetlozarangelov.vscode-open-project
   tags:
   - default_extensions
   - developer_extensions
 
 - name: Golang extension installation
-  command: code --install-extension ms-vscode.go
+  command: /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code --install-extension golang.Go
   tags:
   - golang_extensions
   - developer_extensions
 
 - name: GoCD extension installation
-  command: code --install-extension inlustra.vscode-go-cd
+  command: /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code --install-extension inlustra.vscode-go-cd
   tags:
   - infra_extensions
   - devops_extensions
 
 - name: Go Coverage extension installation
-  command: code --install-extension defaltd.go-coverage-viewer
+  command: /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code --install-extension defaltd.go-coverage-viewer
   tags:
   - golang_extensions
   - developer_extensions
 
 - name: Go Critic extension installation
-  command: code --install-extension neverik.go-critic
+  command: /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code --install-extension neverik.go-critic
   tags:
   - golang_extensions
   - developer_extensions
 
 - name: Go Test Explorer extension installation
-  command: code --install-extension premparihar.gotestexplorer
+  command: /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code --install-extension premparihar.gotestexplorer
   tags:
   - golang_extensions
   - developer_extensions
 
 - name: Golang TDD extension installation
-  command: code --install-extension joaoacdias.golang-tdd
+  command: /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code --install-extension joaoacdias.golang-tdd
   tags:
   - golang_extensions
   - developer_extensions
 
 - name: Java Dependency Viewer extension installation
-  command: code --install-extension vscjava.vscode-java-dependency
+  command: /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code --install-extension vscjava.vscode-java-dependency
   tags:
   - developer_extensions
   - java_extensions
 
 - name: Java Extension Pack extension installation
-  command: code --install-extension vscjava.vscode-java-pack
+  command: /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code --install-extension vscjava.vscode-java-pack
   tags:
   - developer_extensions
   - java_extensions
 
 - name: Java Test Runner extension installation
-  command: code --install-extension vscjava.vscode-java-test
+  command: /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code --install-extension vscjava.vscode-java-test
   tags:
   - developer_extensions
   - java_extensions
 
 - name: Language Support for Java extension installation
-  command: code --install-extension redhat.java
+  command: /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code --install-extension redhat.java
   tags:
   - developer_extensions
   - java_extensions
 
 - name: Maven for Java extension installation
-  command: code --install-extension vscjava.vscode-maven
+  command: /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code --install-extension vscjava.vscode-maven
   tags:
   - developer_extensions
   - java_extensions
 
 - name: Json extension installation
-  command: code --install-extension zainchen.json
+  command: /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code --install-extension zainchen.json
   tags:
   - default_extensions
   - developer_extensions
 
 - name: Kotlin extension installation
-  command: code --install-extension fwcd.kotlin
+  command: /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code --install-extension fwcd.kotlin
   tags:
   - developer_extensions
   - kotlin_extensions
 
 - name: Kotlin Formatter extension installation
-  command: code --install-extension esafirm.kotlin-formatter
+  command: /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code --install-extension esafirm.kotlin-formatter
   tags:
   - developer_extensions
   - kotlin_extensions
 
 - name: npm extension installation
-  command: code --install-extension eg2.vscode-npm-script
+  command: /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code --install-extension eg2.vscode-npm-script
   tags:
   - default_extensions
   - frontend_extensions
   - javascript_extensions
 
 - name: npm intellisense extension installation
-  command: code --install-extension christian-kohler.npm-intellisense
+  command: /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code --install-extension christian-kohler.npm-intellisense
   tags:
   - default_extensions
   - frontend_extensions
   - javascript_extensions
 
 - name: Python extension installation
-  command: code --install-extension ms-python.python
+  command: /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code --install-extension ms-python.python
   tags:
   - developer_extensions
   - python_extensions
 
 - name: Travis CI Status extension installation
-  command: code --install-extension jvandyke.vscode-circleci
+  command: /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code --install-extension jvandyke.vscode-circleci
   tags:
   - infra_extensions
   - devops_extensions
 
 - name: Git Lens extension installation
-  command: code --install-extension eamodio.gitlens
+  command: /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code --install-extension eamodio.gitlens
   tags:
   - developer_extensions
   - devops_extensions
