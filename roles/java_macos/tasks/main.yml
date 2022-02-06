@@ -11,11 +11,11 @@
 
 - name: Java Installation package installation
   become: yes
-  command: installer -pkg /Volumes/"JDK 11.0.13"/"JDK 11.0.13.pkg" -target /
+  command: installer -pkg /Volumes/"JDK 11.0.14"/"JDK 11.0.14.pkg" -target /
 
 - name: Java Runtime package umounting
   become: yes
-  command: hdiutil detach /Volumes/"JDK 11.0.13"
+  command: hdiutil detach /Volumes/"JDK 11.0.14"
 
 - name: Remove installation package
   file:
