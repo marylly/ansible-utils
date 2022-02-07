@@ -2,7 +2,7 @@
 # tasks file for docker_macos
   - name: Download Docker Package
     get_url:
-      url: https://download.docker.com/mac/stable/Docker.dmg
+      url: https://desktop.docker.com/mac/main/amd64/Docker.dmg
       dest: /tmp/Docker.dmg
 
   - name: Docker package uncompress
