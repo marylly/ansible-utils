@@ -2,22 +2,20 @@
 # tasks file for virtualbox_macos
 - name: Download VirtualBox Runtime Package
   get_url:
-    url: https://download.virtualbox.org/virtualbox/6.1.30/VirtualBox-6.1.30-148432-OSX.dmg
+    url: http://download.virtualbox.org/virtualbox/5.0.40/VirtualBox-5.0.40-115130-OSX.dmg
     dest: ./VirtualBox.dmg
 
-# - name: VirtualBox Runtime package uncompress
-#   become: yes
-#   command: hdiutil attach VirtualBox.dmg
+- name: VirtualBox package uncompress
+  command: hdiutil attach ./VirtualBox.dmg
 
-- name: Java Installation package installation
-  become: yes
+- name: VirtualBox package installation
   command: installer -pkg /Volumes/VirtualBox/VirtualBox.pkg -target /
-
-- name: VirtualBox Runtime package umounting
   become: yes
+
+- name: VirtualBox package umounting
   command: hdiutil detach /Volumes/VirtualBox
 
 - name: Remove installation package
   file:
-    path: /tmp/VirtualBox.dmg
+    path: ./VirtualBox.dmg
     state: absent
