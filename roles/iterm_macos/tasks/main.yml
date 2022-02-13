@@ -1,0 +1,22 @@
+---
+# tasks file for iterm_role
+  - name: Download iTerm2 Package
+    get_url:
+      url: https://iterm2.com/downloads/stable/iTerm2-3_4_15.zip
+      dest: ./iterm2.zip
+
+  - name: Uncompress installation package
+    command: unzip ./iterm2.zip -d ./iTerm2
+
+  - name: Set VisualCode app into Application 
+    copy: remote_src=True src="./iTerm2/iTerm.app" dest=/Applications/
+
+  - name: Remove installation package folder
+    file:
+      path: /tmp/iTerm2
+      state: absent
+
+  - name: Remove installation package
+    file:
+      path: /tmp/iterm2.zip
+      state: absent
