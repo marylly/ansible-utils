@@ -2,11 +2,13 @@
     localhost
   connection: local
   roles:
-    - { role: awscli_macos, tags: ['awscli_role'], when: ansible_os_family == 'Darwin' }
+    - { role: awscli_macos,         tags: ['awscli_role'],          when: ansible_os_family == 'Darwin' }
     - { role: docker_macos,         tags: ['docker_role'],          when: ansible_os_family == 'Darwin' }
     - { role: docker_machine_macos, tags: ['docker_machine_role'],  when: ansible_os_family == 'Darwin' }
-    - { role: minikube, tags: ['minikube_role'] }
-    - { role: visualcode_macos, tags: ['visualcode_role'], when: ansible_os_family == 'Darwin' }
+    - { role: iterm_macos,          tags: ['iterm_role'],           when: ansible_os_family == 'Darwin' }
+    - { role: minikube,             tags: ['minikube_role'] }
+    - { role: podman_macos,         tags: ['podman_role'],          when: ansible_os_family == 'Darwin' }
+    - { role: visualcode_macos, tags: ['visualcode_role'],          when: ansible_os_family == 'Darwin' }
     - { role: visualcode_debian, tags: ['visualcode_role'], when: ansible_os_family == 'Debian' }
     - { role: visualcode_extensions, tags: ['visualcode_role'] }
     - { role: golang_debian, tags: ['golang_role'], when: ansible_os_family == 'Debian' }

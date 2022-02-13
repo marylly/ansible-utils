@@ -1,0 +1,16 @@
+---
+# tasks file for podman_role
+  - name: Podman installation
+    command: brew install podman
+
+  - name: Podman Machine init
+    command: podman machine init
+
+  - name: Podman Machine start
+    command: podman machine start
+
+  - name: Gettting version installed
+    command: podman info
+    register: podman_version
+  
+  - debug: msg="{{ podman_version.stdout }}"
