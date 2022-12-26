@@ -13,7 +13,7 @@
     command: cp -r "/tmp/Spotify/Install Spotify.app" /Applications
 
   - name: Spotify installation
-    command: open -a /Applications/Install\ Spotify.app
+    command: open -a "/tmp/Spotify/Install Spotify.app"
 
   - name: Remove installation package folder
     file:
