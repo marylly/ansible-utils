@@ -1,0 +1,26 @@
+---
+# tasks file for gnupg
+- name: Download GNUPG Package
+  get_url:
+    url: https://releases.gpgtools.org/GPG_Suite-2022.2.dmg
+    dest: /tmp/gnupg.dmg
+
+- name: GNUPG package uncompress
+  become: yes
+  become_user: root
+  command: hdiutil attach /tmp/gnupg.dmg
+
+- name: GNUPG Installation package installation
+  become: yes
+  become_user: root
+  command: installer -pkg /Volumes/"GPG Suite"/Install.pkg -target /
+
+- name: GNUPG package umounting
+  become: yes
+  become_user: root
+  command: hdiutil detach /Volumes/"GPG Suite"
+
+- name: Remove installation package
+  file:
+    path: /tmp/gnupg.dmg
+    state: absent
