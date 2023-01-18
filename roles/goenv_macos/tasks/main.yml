@@ -1,0 +1,26 @@
+---
+# tasks file for goenv
+  - name: Clone GoEnv - Golang Environments
+    git:
+      repo: https://github.com/syndbg/goenv.git
+      dest: ${HOME}/.goenv
+
+  - name: List GoEnv binary files
+    find:
+      paths: ${HOME}/.goenv/bin
+    register: find
+    
+  - name: Add GoEnv to bin folder terminal commands [1]
+    command: echo 'export GOENV_ROOT="$HOME/.goenv"' >> ~/.zshrc
+
+  - name: Add GoEnv to bin folder terminal commands [2]
+    command: echo 'export PATH="$GOENV_ROOT/bin:$PATH"' >> ~/.zshrc
+
+  - name: Add GoEnv to bin folder terminal commands [3]
+    command: echo 'eval "$(goenv init -)"' >> ~/.zshrc
+
+  - name: Add GoEnv to bin folder terminal commands [4]
+    command: echo 'export PATH="$GOROOT/bin:$PATH"' >> ~/.zshrc
+
+  - name: Add GoEnv to bin folder terminal commands [5]
+    command: echo 'export PATH="$PATH:$GOPATH/bin"' >> ~/.zshrc
