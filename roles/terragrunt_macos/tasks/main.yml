@@ -1,0 +1,15 @@
+---
+# tasks file for awscli_macos
+  - name: Download Terragrunt package
+    get_url:
+      url: https://github.com/gruntwork-io/terragrunt/releases/download/v0.43.0/terragrunt_darwin_amd64
+      dest: /usr/local/bin/terragrunt
+      mode: ug=rx,o=
+
+  - name: Adding the path in the bashrc files
+    lineinfile:
+      dest: $HOME/.zshrc
+      line: 'export PATH=$PATH:/usr/local/bin/terragrunt'
+      insertafter: 'EOF'
+      regexp: 'export PATH=\$PATH:/usr/local/bin/terragrunt'
+      state: present
