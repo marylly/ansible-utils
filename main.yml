@@ -7,6 +7,7 @@
     - { role: docker_machine_macos, tags: ['docker_machine_role'],  when: ansible_os_family == 'Darwin' }
     - { role: gnupg_macos,          tags: ['gnupg_role'],           when: ansible_os_family == 'Darwin' }
     - { role: goenv_macos,          tags: ['goenv_role'],           when: ansible_os_family == 'Darwin' }
+    - { role: insomnia_macos,       tags: ['insomnia_role'],        when: ansible_os_family == 'Darwin' }
     - { role: iterm_macos,          tags: ['iterm_role'],           when: ansible_os_family == 'Darwin' }
     - { role: minikube,             tags: ['minikube_role'] }
     - { role: podman_macos,         tags: ['podman_role'],          when: ansible_os_family == 'Darwin' }

@@ -1,0 +1,25 @@
+---
+# tasks file for insomnia_macos
+- name: Download Insomnia Package
+  get_url:
+    url: https://updates.insomnia.rest/downloads/mac/latest?app=com.insomnia.app&source=websiteg
+    dest: /tmp/insomnia.dmg
+
+- name: Insomnia package uncompress
+  become: yes
+  become_user: root
+  command: hdiutil attach /tmp/insomnia.dmg
+
+- name: Insomnia package installation
+  become: yes
+  command: cp -r /Volumes/"Insomnia 2022.7.5-universal"/Insomnia.app /Applications
+
+- name: Insomnia package umounting
+  become: yes
+  become_user: root
+  command: hdiutil detach /Volumes/"Insomnia 2022.7.5-universal"
+
+- name: Remove installation package
+  file:
+    path: /tmp/insomnia.dmg
+    state: absent
