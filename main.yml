@@ -2,6 +2,7 @@
     localhost
   connection: local
   roles:
+    - { role: azurecli_macos,       tags: ['azurecli_role'],        when: ansible_os_family == 'Darwin' }
     - { role: awscli_macos,         tags: ['awscli_role'],          when: ansible_os_family == 'Darwin' }
     - { role: docker_macos,         tags: ['docker_role'],          when: ansible_os_family == 'Darwin' }
     - { role: docker_machine_macos, tags: ['docker_machine_role'],  when: ansible_os_family == 'Darwin' }

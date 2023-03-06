@@ -1,0 +1,14 @@
+---
+# tasks file for azurecli_macos
+
+  - name: Azure CLI installation
+    homebrew: 
+      name: azure-cli
+      update_homebrew: yes
+      install_options: enable-debug
+
+  - name: Gettting Azure CLI version installed
+    command: az version
+    register: az_version
+  
+  - debug: msg="{{ az_version.stdout }}"
