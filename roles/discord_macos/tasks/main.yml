@@ -1,0 +1,20 @@
+---
+# tasks file for discord_macos
+
+  - name: Download Discord package
+    get_url:
+      url: https://discord.com/api/download?platform=osx
+      dest: /tmp/Discord.dmg
+
+  - name: Discord package uncompress
+    become: yes
+    command: hdiutil attach /tmp/Discord.dmg
+
+  - name: Discord package installation
+    become: yes
+    command: cp -r /Volumes/Discord/Discord.app /Applications
+
+  - name: Remove installation package
+    file:
+      path: /tmp/Discord.dmg
+      state: absent
