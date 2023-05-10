@@ -1,0 +1,26 @@
+---
+# tasks file for gvm_macos
+- name: Download GVM - Golang Vesion Manager
+  get_url:
+    url:
+      https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer
+    dest: /tmp/gvm.sh
+    mode: 0755
+
+- name: Install GVM - Golang Vesion Manager
+  command: bash -c /tmp/gvm.sh
+
+- name: Add GVM to bin folder terminal commands
+  command: echo '[[ -s "$HOME/.gvm/scripts/gvm" ]] & source "$HOME/.gvm/scripts/gvm"' >> ~/.zshrc
+
+- name: Remove the installation package
+  become: yes
+  file:
+    path: /tmp/gvm.sh
+    state: absent
+
+- name: Verifing GVM version installed
+  shell: zsh ~/.zshrc & gvm version
+  register: gvm_version
+
+- debug: msg="{{ gvm_version.stdout }}"

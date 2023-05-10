@@ -40,7 +40,8 @@ ansible-playbook main.yml -i hosts --list-tags
 
 ## Applications Available
 
-| Application | Version  | SOs   |
-|-------------|----------|-------|
-| AWS Cli     | 2.x      | MacOS |
-| Azure Cli   | Latest   | MacOs |
+| Application                    | Version  | SOs   |
+|--------------------------------|----------|-------|
+| AWS Cli                        | 2.x      | MacOS |
+| Azure Cli                      | Latest   | MacOs |
+| GVM - Golang Version Manager   | Latest   | MacOs |
