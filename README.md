@@ -45,3 +45,4 @@ ansible-playbook main.yml -i hosts --list-tags
 | AWS Cli                        | 2.x      | MacOS |
 | Azure Cli                      | Latest   | MacOs |
 | GVM - Golang Version Manager   | Latest   | MacOs |
+| RVM - Ruby Version Manager     | Latest   | MacOs |

@@ -1,12 +1,12 @@
 ---
 # tasks file for nvm_macos
-  - name: Download NVM - Node Vesion Manager
+  - name: Download NVM - Node Version Manager
     get_url: 
       url: https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh
       dest: /tmp/nvm.sh
       mode: 0755
 
-  - name: Install NVM - Node Vesion Manager
+  - name: Install NVM - Node Version Manager
     command: bash -c /tmp/nvm.sh
 
   - name: Add NVM to bin folder terminal commands
