@@ -16,6 +16,11 @@ repos:
         args:
           - --strict
 
+  - repo: https://github.com/ansible/ansible-lint
+    rev: v6.16.2
+    hooks:
+      - id: ansible-lint
+
 default_stages:
   - commit
   - merge-commit
