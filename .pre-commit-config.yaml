@@ -18,11 +18,6 @@ repos:
         skip_list:
           - yaml[truthy]
 
-  - repo: https://github.com/ansible/ansible-lint
-    rev: v6.22.1
-    hooks:
-      - id: ansible-lint
-
 default_stages:
   - commit
   - merge-commit

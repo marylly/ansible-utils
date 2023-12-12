@@ -52,6 +52,9 @@
       when: ansible_os_family == 'Debian'
     - role: visualcode_extensions
       tags: ['visualcode_role']
+    - role: tfsec_macos
+      tags: ['tfsec_role']
+      when: ansible_os_family == 'Darwin'
     - role: terraform_macos
       tags: ['terraform_role']
       when: ansible_os_family == 'Darwin'

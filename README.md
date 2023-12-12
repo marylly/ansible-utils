@@ -48,3 +48,4 @@ ansible-playbook main.yml -i hosts --list-tags
 | RVM - Ruby Version Manager     | Latest   | MacOs |
 | Terraform                      | 0.12.31  | MacOS |
 | TFEnv                          | Latest   | MacOS |
+| TFSec                          | Latest   | MacOS |
