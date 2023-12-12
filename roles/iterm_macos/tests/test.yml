@@ -2,4 +2,4 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - iterm_role
+    - iterm_macos

@@ -1,10 +1,11 @@
 ---
-# tasks file for minikube_role
+# tasks file for minikube
 - name: Download Minikube
   get_url:
-    url: https://storage.googleapis.com/minikube/releases/latest/minikube-darwin-amd64
+    url:
+      https://storage.googleapis.com/minikube/releases/latest/minikube-darwin-amd64
     dest: ./minikube-darwin-amd64
 
 - name: Minikube installation
   shell: install minikube-darwin-amd64 /usr/local/bin/minikube
-  become: yes
+  become: true

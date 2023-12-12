@@ -1,8 +1,9 @@
 ---
-# tasks file for docker_machine
+# tasks file for docker_machine_macos
 - name: Docker Machine installation
   get_url:
-    url: https://github.com/docker/machine/releases/download/v0.16.2/docker-machine-Darwin-x86_64
+    url:
+      https://github.com/docker/machine/releases/download/v0.16.2/docker-machine-Darwin-x86_64
     dest: /usr/local/bin/docker-machine
     mode: ug=rx,o=
 

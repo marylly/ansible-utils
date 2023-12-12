@@ -1,53 +1,54 @@
 ---
-# tasks file for golang
-  - name: Check if exists already a installation
-    stat:
-      path: /usr/local/go
-    register: go_folder
+# tasks file for golang_debian
+- name: Check if exists already a installation
+  stat:
+    path: /usr/local/go
+  register: go_folder
 
-  - name: Clean old version
-    become: yes
-    file:
-      path: /usr/local/go
-      state: absent
-    when: go_folder.stat.exists
+- name: Clean old version
+  become: true
+  file:
+    path: /usr/local/go
+    state: absent
+  when: go_folder.stat.exists
 
-  - name: Download Golang package
-    get_url:
-      url: https://dl.google.com/go/go1.14.3.linux-amd64.tar.gz
-      dest: /tmp/go.tar.gz
-      checksum: sha256:1c39eac4ae95781b066c144c58e45d6859652247f7515f0d2cba7be7d57d2226
+- name: Download Golang package
+  get_url:
+    url: https://dl.google.com/go/go1.14.3.linux-amd64.tar.gz
+    dest: /tmp/go.tar.gz
+    checksum:
+      sha256:1c39eac4ae95781b066c144c58e45d6859652247f7515f0d2cba7be7d57d2226
 
-  - name: Uncompress the installation package
-    become: yes
-    command: tar -zxf /tmp/go.tar.gz -C /tmp
+- name: Uncompress the installation package
+  become: true
+  command: tar -zxf /tmp/go.tar.gz -C /tmp
 
-  - name: Copy the go folder to the SO
-    become: yes
-    command: cp -r /tmp/go /usr/local/
+- name: Copy the go folder to the SO
+  become: true
+  command: cp -r /tmp/go /usr/local/
 
-  - name: Adding the path in the bashrc files
-    lineinfile:
-      dest: $HOME/.bashrc
-      line: 'export PATH=$PATH:/usr/local/go/bin'
-      insertafter: 'EOF'
-      regexp: 'export PATH=\$PATH:/usr/local/go/bin'
-      state: present
- 
-  - name: Remove the installation package
-    become: yes
-    file:
-      path: /tmp/go.tar.gz
-      state: absent
+- name: Adding the path in the bashrc files
+  lineinfile:
+    dest: $HOME/.bashrc
+    line: 'export PATH=$PATH:/usr/local/go/bin'
+    insertafter: 'EOF'
+    regexp: 'export PATH=\$PATH:/usr/local/go/bin'
+    state: present
 
-  - name: Remove the installation folder
-    become: yes
-    file:
-      path: /tmp/go
-      state: absent
+- name: Remove the installation package
+  become: true
+  file:
+    path: /tmp/go.tar.gz
+    state: absent
 
-  - name: Verifing Go version installed
-    command: go version
-    register: go_version
+- name: Remove the installation folder
+  become: true
+  file:
+    path: /tmp/go
+    state: absent
 
-  - debug: msg="{{ go_version.stdout }}"
+- name: Verifing Go version installed
+  command: go version
+  register: go_version
+
+- debug: msg="{{ go_version.stdout }}"

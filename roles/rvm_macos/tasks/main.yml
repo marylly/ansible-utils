@@ -1,0 +1,20 @@
+---
+# tasks file for rvm_macos
+- name: Download RVM - Ruby Version Manager
+  get_url:
+    url:
+      https://raw.githubusercontent.com/rvm/rvm/master/binscripts/rvm-installer
+    dest: /tmp/rvm.sh
+    mode: 0755
+
+- name: Install RVM - Ruby Version Manager
+  command: bash -c /tmp/rvm.sh
+
+- name: Add RVM to bin folder terminal commands
+  command: echo 'source $HOME/.rvm/scripts/rvm' >> ~/.zshrc
+
+- name: Verifing RVM version installed
+  shell: source ~/.zshrc && rvm version
+  register: rvm_version
+
+- debug: msg="{{ rvm_version.stdout }}"

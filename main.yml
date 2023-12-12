@@ -1,38 +1,107 @@
+---
 - hosts:
     localhost
   connection: local
   roles:
-    - { role: azurecli_macos,       tags: ['azurecli_role'],        when: ansible_os_family == 'Darwin' }
-    - { role: awscli_macos,         tags: ['awscli_role'],          when: ansible_os_family == 'Darwin' }
-    - { role: discord_macos,        tags: ['discord_role'],          when: ansible_os_family == 'Darwin' }
-    - { role: docker_macos,         tags: ['docker_role'],          when: ansible_os_family == 'Darwin' }
-    - { role: docker_machine_macos, tags: ['docker_machine_role'],  when: ansible_os_family == 'Darwin' }
-    - { role: gnupg_macos,          tags: ['gnupg_role'],           when: ansible_os_family == 'Darwin' }
-    - { role: goenv_macos,          tags: ['goenv_role'],           when: ansible_os_family == 'Darwin' }
-    - { role: gvm_macos,            tags: ['gvm_role'],             when: ansible_os_family == 'Darwin' }
-    - { role: insomnia_macos,       tags: ['insomnia_role'],        when: ansible_os_family == 'Darwin' }
-    - { role: iterm_macos,          tags: ['iterm_role'],           when: ansible_os_family == 'Darwin' }
-    - { role: minikube,             tags: ['minikube_role'] }
-    - { role: podman_macos,         tags: ['podman_role'],          when: ansible_os_family == 'Darwin' }
-    - { role: rvm_macos,            tags: ['rvm_role'],             when: ansible_os_family == 'Darwin' }
-    - { role: visualcode_macos, tags: ['visualcode_role'],          when: ansible_os_family == 'Darwin' }
-    - { role: visualcode_debian, tags: ['visualcode_role'], when: ansible_os_family == 'Debian' }
-    - { role: visualcode_extensions, tags: ['visualcode_role'] }
-    - { role: terragrunt_macos,     tags: ['terragrunt_role'],      when: ansible_os_family == 'Darwin' }
-    - { role: golang_debian, tags: ['golang_role'], when: ansible_os_family == 'Debian' }
-    - { role: golang_macos, tags: ['golang_role'], when: ansible_os_family == 'Darwin' }
-    - { role: google_chrome_macos, tags: ['google_chrome_role'], when: ansible_os_family == 'Darwin' }
-    - { role: studying_tools, tags: ['studying_tools_role'] }
-    - { role: firefox_macos, tags: ['firefox_role'], when: ansible_os_family == 'Darwin' }
-    - { role: gimp_macos, tags: ['gimp_role'], when: ansible_os_family == 'Darwin' }
-    - { role: node_macos, tags: ['node_role'], when: ansible_os_family == 'Darwin' }
-    - { role: java_macos, tags: ['java_role'], when: ansible_os_family == 'Darwin' }
-    - { role: nvm_macos, tags: ['nvm_role'], when: ansible_os_family == 'Darwin' }
-    - { role: postman_macos, tags: ['postman_role'], when: ansible_os_family == 'Darwin' }
-    - { role: slack_macos, tags: ['slack_role'], when: ansible_os_family == 'Darwin' }
-    - { role: spotify_macos, tags: ['spotify_role'], when: ansible_os_family == 'Darwin' }
-    - { role: telegram_macos, tags: ['telegram_role'], when: ansible_os_family == 'Darwin' }
-    - { role: tfenv_macos, tags: ['tfenv_role'], when: ansible_os_family == 'Darwin' }
-    - { role: terraform_macos, tags: ['terraform_role'], when: ansible_os_family == 'Darwin' }
-    - { role: virtualbox_macos, tags: ['virtualbox_role'], when: ansible_os_family == 'Darwin' }
-    - { role: zoom_macos, tags: ['zoom_role'], when: ansible_os_family == 'Darwin' }
+    - role: azurecli_macos
+      tags: ['azurecli_role']
+      when: ansible_os_family == 'Darwin'
+    - role: awscli_macos
+      tags: ['awscli_role']
+      when: ansible_os_family == 'Darwin'
+    - role: discord_macos
+      tags: ['discord_role']
+      when: ansible_os_family == 'Darwin'
+    - role: docker_macos
+      tags: ['docker_role']
+      when: ansible_os_family == 'Darwin'
+    - role: docker_machine_macos
+      tags: ['docker_machine_role']
+      when: ansible_os_family == 'Darwin'
+    - role: gnupg_macos
+      tags: ['gnupg_role']
+      when: ansible_os_family == 'Darwin'
+    - role: goenv_macos
+      tags: ['goenv_role']
+      when: ansible_os_family == 'Darwin'
+    - role: gvm_macos
+      tags: ['gvm_role']
+      when: ansible_os_family == 'Darwin'
+    - role: insomnia_macos
+      tags: ['insomnia_role']
+      when: ansible_os_family == 'Darwin'
+    - role: iterm_macos
+      tags: ['iterm_role']
+      when: ansible_os_family == 'Darwin'
+    - role: minikube
+      tags: ['minikube_role']
+    - role: ngrok_macos
+      tags: ['ngrok_role']
+      when: ansible_os_family == 'Darwin'
+    - role: podman_macos
+      tags: ['podman_role']
+      when: ansible_os_family == 'Darwin'
+    - role: rvm_macos
+      tags: ['rvm_role']
+      when: ansible_os_family == 'Darwin'
+    - role: visualcode_macos
+      tags: ['visualcode_role']
+      when: ansible_os_family == 'Darwin'
+    - role: visualcode_debian
+      tags: ['visualcode_role']
+      when: ansible_os_family == 'Debian'
+    - role: visualcode_extensions
+      tags: ['visualcode_role']
+    - role: terraform_macos
+      tags: ['terraform_role']
+      when: ansible_os_family == 'Darwin'
+    - role: terragrunt_macos
+      tags: ['terragrunt_role']
+      when: ansible_os_family == 'Darwin'
+    - role: golang_debian
+      tags: ['golang_role']
+      when: ansible_os_family == 'Debian'
+    - role: golang_macos
+      tags: ['golang_role']
+      when: ansible_os_family == 'Darwin'
+    - role: google_chrome_macos
+      tags: ['google_chrome_role']
+      when: ansible_os_family == 'Darwin'
+    - role: studying_tools
+      tags: ['studying_tools_role']
+    - role: firefox_macos
+      tags: ['firefox_role']
+      when: ansible_os_family == 'Darwin'
+    - role: gimp_macos
+      tags: ['gimp_role']
+      when: ansible_os_family == 'Darwin'
+    - role: node_macos
+      tags: ['node_role']
+      when: ansible_os_family == 'Darwin'
+    - role: java_macos
+      tags: ['java_role']
+      when: ansible_os_family == 'Darwin'
+    - role: nvm_macos
+      tags: ['nvm_role']
+      when: ansible_os_family == 'Darwin'
+    - role: postman_macos
+      tags: ['postman_role']
+      when: ansible_os_family == 'Darwin'
+    - role: slack_macos
+      tags: ['slack_role']
+      when: ansible_os_family == 'Darwin'
+    - role: spotify_macos
+      tags: ['spotify_role']
+      when: ansible_os_family == 'Darwin'
+    - role: telegram_macos
+      tags: ['telegram_role']
+      when: ansible_os_family == 'Darwin'
+    - role: tfenv_macos
+      tags: ['tfenv_role']
+      when: ansible_os_family == 'Darwin'
+    - role: virtualbox_macos
+      tags: ['virtualbox_role']
+      when: ansible_os_family == 'Darwin'
+    - role: zoom_macos
+      tags: ['zoom_role']
+      when: ansible_os_family == 'Darwin'

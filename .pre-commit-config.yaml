@@ -15,9 +15,11 @@ repos:
       - id: yamllint
         args:
           - --strict
+        skip_list:
+          - yaml[truthy]
 
   - repo: https://github.com/ansible/ansible-lint
-    rev: v6.16.2
+    rev: v6.22.1
     hooks:
       - id: ansible-lint
 

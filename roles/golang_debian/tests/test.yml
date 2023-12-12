@@ -2,4 +2,4 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - golang
+    - golang_debian

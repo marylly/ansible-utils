@@ -1,0 +1,26 @@
+---
+# tasks file for ngrok_macos
+- name: Download NGrok Package
+  get_url:
+    url: https://bin.equinox.io/c/bNyj1mQVY4c/ngrok-v3-stable-darwin-amd64.zip
+    dest: /tmp/ngrok.zip
+
+- name: Uncompress installation package
+  command: unzip /tmp/ngrok.zip -d /tmp/ngrok
+
+- name: Moving to local binaries folder
+  command: mv /tmp/ngrok /usr/local/ngrok
+
+- name: Remove the installation package
+  file:
+    path: /tmp/ngrok.zip
+    state: absent
+
+- name: Add NGrok to bin folder terminal commands
+  command: echo 'export PATH="$PATH:/usr/local/bin/ngrok"' >> ~/.zshrc
+
+- name: Verifing NGrok CLI version installed
+  command: ngrok version
+  register: ngrok_version
+
+- debug: msg="{{ ngrok_version.stdout }}"

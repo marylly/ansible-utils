@@ -16,7 +16,6 @@ You're gonna need this tools to use this project:
 * [Python 3.8.x](https://www.python.org/downloads/release/python-380/)
 * [Ansible 2.10](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html) or greater
 
-
 ## Commands
 
 To run all the playbook roles, you can perform:
@@ -45,4 +44,7 @@ ansible-playbook main.yml -i hosts --list-tags
 | AWS Cli                        | 2.x      | MacOS |
 | Azure Cli                      | Latest   | MacOs |
 | GVM - Golang Version Manager   | Latest   | MacOs |
+| NGrok                          | Latest   | MacOS |
 | RVM - Ruby Version Manager     | Latest   | MacOs |
+| Terraform                      | 0.12.31  | MacOS |
+| TFEnv                          | Latest   | MacOS |
