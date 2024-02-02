@@ -20,21 +20,38 @@ You're gonna need this tools to use this project:
 
 To run all the playbook roles, you can perform:
 
-```
-ansible-playbook main.yml -i hosts
+```sh
+$ ansible-playbook main.yml -i hosts
+PLAY [localhost] ******************************************************************************************************************************************
+
+TASK [Gathering Facts] ************************************************************************************************************************************
+ok: [localhost]
+
+TASK [microk8s_macos : MicroK8S MacOS installation] *******************************************************************************************************
+skipping: [localhost]
+
+TASK [microk8s_macos : Gettting version installed] ********************************************************************************************************
+skipping: [localhost]
+
+TASK [microk8s_macos : debug] *****************************************************************************************************************************
+ok: [localhost] => {
+    "msg": "..."
+}
+
+PLAY RECAP ************************************************************************************************************************************************
+localhost                  : ok=2    changed=0    unreachable=0    failed=0    skipped=4    rescued=0    ignored=0
 ```
 
 To run a specific playbook role, you can perform with it declared in the command line:
 
-```
-ansible-playbook main.yml -i hosts --tags gnupg_role -K
+```sh
+    ansible-playbook main.yml -i hosts --tags gnupg_role -K
 ```
 
 To list all the roles, you can perform:
 
-```
-ansible-playbook main.yml -i hosts --list-tags
-
+```sh
+    ansible-playbook main.yml -i hosts --list-tags
 ```
 
 ## Applications Available
@@ -44,6 +61,8 @@ ansible-playbook main.yml -i hosts --list-tags
 | AWS Cli                        | 2.x      | MacOS |
 | Azure Cli                      | Latest   | MacOs |
 | GVM - Golang Version Manager   | Latest   | MacOs |
+| MicroK8S                       | Latest   | MacOs |
+| Multipass                      | Latest   | MacOs |
 | NGrok                          | Latest   | MacOS |
 | RVM - Ruby Version Manager     | Latest   | MacOs |
 | Terraform                      | 0.12.31  | MacOS |

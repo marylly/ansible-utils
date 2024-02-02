@@ -1,0 +1,19 @@
+---
+# tasks file for microk8s_macos
+- name: MicroK8S MacOS installation
+  command: brew install ubuntu/microk8s/microk8s
+
+- name: MicroK8S local installation
+  command: microk8s install
+
+- name: Gettting version installed
+  command: microk8s version
+  register: microk8s_version
+
+- debug: msg="{{ microk8s_version.stdout }}"
+
+- name: Getting the MicroK8S status
+  command: microk8s status --wait-ready
+  register: microk8s_status
+
+- debug: msg="{{ microk8s_status.stdout }}"
