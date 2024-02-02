@@ -1,0 +1,16 @@
+---
+# tasks file for multipass_macos
+- name: Download Multipass package
+  get_url:
+    url: https://multipass.run/download/macos
+    dest: /tmp/multipass.pkg
+
+- name: Multipass package installation
+  become: true
+  command: installer -pkg /tmp/multipass.pkg -target /
+
+- name: Remove the installation package
+  become: true
+  file:
+    path: /tmp/multipass.pkg
+    state: absent

@@ -33,6 +33,9 @@
     - role: iterm_macos
       tags: ['iterm_role']
       when: ansible_os_family == 'Darwin'
+    - role: multipass_macos
+      tags: ['multipass']
+      when: ansible_os_family == 'Darwin'
     - role: minikube
       tags: ['minikube_role']
     - role: ngrok_macos
