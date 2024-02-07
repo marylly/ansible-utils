@@ -60,6 +60,7 @@ To list all the roles, you can perform:
 |--------------------------------|----------|-------|
 | AWS Cli                        | 2.x      | MacOS |
 | Azure Cli                      | Latest   | MacOs |
+| CodeLite                       | Latest   | MacOS |
 | GVM - Golang Version Manager   | Latest   | MacOs |
 | MicroK8S                       | Latest   | MacOs |
 | Multipass                      | Latest   | MacOs |

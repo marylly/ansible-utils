@@ -9,6 +9,9 @@
     - role: awscli_macos
       tags: ['awscli_role']
       when: ansible_os_family == 'Darwin'
+    - role: codelite_macos
+      tags: ['codelite_role']
+      when: ansible_os_family == 'Darwin'
     - role: discord_macos
       tags: ['discord_role']
       when: ansible_os_family == 'Darwin'

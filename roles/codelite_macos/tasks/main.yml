@@ -1,0 +1,13 @@
+---
+# tasks file for codelite_macos
+- name: Add CodeLite Homebrew repository
+  command: brew tap eranif/codelite
+
+- name: Update Homebrew
+  command: brew update
+  
+- name: CodeLite Installation
+  command: brew reinstall --cask codelite-official
+  
+- name: Check the app linking
+  command: xattr -cr /Applications/codelite.app/
