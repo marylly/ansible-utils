@@ -96,6 +96,9 @@
     - role: nvm_macos
       tags: ['nvm_role']
       when: ansible_os_family == 'Darwin'
+    - role: notion_macos
+      tags: ['notion_role']
+      when: ansible_os_family == 'Darwin'
     - role: postman_macos
       tags: ['postman_role']
       when: ansible_os_family == 'Darwin'

@@ -5,7 +5,7 @@ Your contribution is very welcome! =]
 ## Requirements
 
 Python 3.8+
-Ansible 2.10+
+Ansible 8.1.0+
 Ansible Galaxy 2.10+
 
 ## Installing the repository project
@@ -15,27 +15,30 @@ Execute the following steps below alway you've desire to evolve this repository 
 * Install the following tools: Git Command Line and text editor of your preference.
 * Create a repository fork. See this tutorial: <https://help.github.com/en/github/getting-started-with-github/fork-a-repo>
 
-```
-git remote -v
-git remote add upstream https://github.com/badtuxx/DescomplicandoDocker
-git remote -v
+```sh
+$ git remote add upstream https://github.com/marylly/ansible-utils
+.
+$ git remote -v
+.
 ```
 
 Create a feature branch using the command below:
 
-```bash
-git checkout -b BRANCH_NAME
+```sh
+$ git checkout -b BRANCH_NAME
+.
 ```
 
 Activate the Ansible Version installed in your environment, I've used pyenv:
 
-```bash
-source $HOME/ansible-2.10/bin/activate
+```sh
+$ source $HOME/ansible-8.1.0/bin/activate
+.
 ```
 
 Inside the repository folder you can start adding or updating code:
 
-```bash
+```sh
 cd ansible-utils/
 $ (ansible7.1.0) ➜  ansible-utils git:(master) ✗ ansible-galaxy list --roles-path roles
 # $HOME/dev/ansible-utils/roles
@@ -70,8 +73,9 @@ $ (ansible7.1.0) ➜  ansible-utils git:(master) ✗ ansible-galaxy list --roles
 
 To create a new role for new installation you can use `ansible-galaxy` and init a new one with the name of the tool with separated by underscore, the OS the installation is for:
 
-```bash
-ansible-galaxy role init gvm_macos --init-path roles
+```sh
+$ ansible-galaxy role init gvm_macos --init-path roles
+.
 ```
 
 After create the new tool role, you have to update the `main.yaml` file existent in the repository root folder:
@@ -87,8 +91,9 @@ After create the new tool role, you have to update the `main.yaml` file existent
 
 Execute the new role to evaluate its installation:
 
-```bash
-ansible playbook -i hosts -b --tags gvm_role
+```sh
+$ ansible-playbook -i hosts -b --tags gvm_role -K main.yml
+.
 ```
 
 ## Pre-Commit
@@ -107,8 +112,9 @@ Our pre-commit verify the following points in commit staged files:
 For Unix OS-Like:
 You can install `pre-commit` is through `pip install`:
 
-```bash
-pip install pre-commit
+```sh
+$ pip install pre-commit
+.
 $ pre-commit --version
 pre-commit 3.3.2
 ```
@@ -116,8 +122,9 @@ pre-commit 3.3.2
 For MacOS:
 Another way to install `pre-commit` is through `brew install`:
 
-```bash
+```sh
 $ brew install pre-commit
+.
 $ pre-commit --version
 pre-commit 3.3.2
 ```
@@ -126,8 +133,9 @@ NOTE: Maybe we can have problem installation if you use Ruby 2.6.x locally. To a
 
 After pre-commit installed, inside the project folder where the `.pre-commit-config.yaml` run the pre-commit hooks installation:
 
-```bash
-pre-commit install
+```sh
+$ pre-commit install
+.
 ```
 
 ## Pull request process

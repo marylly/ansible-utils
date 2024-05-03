@@ -45,13 +45,15 @@ localhost                  : ok=2    changed=0    unreachable=0    failed=0    s
 To run a specific playbook role, you can perform with it declared in the command line:
 
 ```sh
-    ansible-playbook main.yml -i hosts --tags gnupg_role -K
+$ ansible-playbook main.yml -i hosts --tags gnupg_role -K
+.
 ```
 
 To list all the roles, you can perform:
 
 ```sh
-    ansible-playbook main.yml -i hosts --list-tags
+$ ansible-playbook main.yml -i hosts --list-tags
+.
 ```
 
 ## Applications Available
@@ -65,6 +67,7 @@ To list all the roles, you can perform:
 | MicroK8S                       | Latest   | MacOs |
 | Multipass                      | Latest   | MacOs |
 | NGrok                          | Latest   | MacOS |
+| Notion                         | Latest   | MacOS |
 | RVM - Ruby Version Manager     | Latest   | MacOs |
 | Terraform                      | 0.12.31  | MacOS |
 | TFEnv                          | Latest   | MacOS |

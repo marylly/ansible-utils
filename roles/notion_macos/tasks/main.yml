@@ -1,0 +1,19 @@
+---
+# tasks file for notion_macos
+- name: Download Notion package
+  get_url:
+    url: https://www.notion.so/desktop/mac-universal/download
+    dest: /tmp/Notion.dmg
+
+- name: Notion package uncompress
+  become: true
+  command: hdiutil attach /tmp/Notion.dmg
+
+- name: Notion package installation
+  become: true
+  command: cp -r /Volumes/Notion/Notion.app /Applications
+
+- name: Remove installation package
+  file:
+    path: /tmp/Notion.dmg
+    state: absent
