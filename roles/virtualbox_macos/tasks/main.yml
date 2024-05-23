@@ -2,7 +2,8 @@
 # tasks file for virtualbox_macos
 - name: Download VirtualBox Runtime Package
   get_url:
-    url: http://download.virtualbox.org/virtualbox/5.0.40/VirtualBox-5.0.40-115130-OSX.dmg
+    url:
+      https://download.virtualbox.org/virtualbox/7.0.18/VirtualBox-7.0.18-162988-OSX.dmg
     dest: ./VirtualBox.dmg
 
 - name: VirtualBox package uncompress
@@ -10,7 +11,7 @@
 
 - name: VirtualBox package installation
   command: installer -pkg /Volumes/VirtualBox/VirtualBox.pkg -target /
-  become: yes
+  become: true
 
 - name: VirtualBox package umounting
   command: hdiutil detach /Volumes/VirtualBox
