@@ -1,0 +1,13 @@
+---
+# tasks file for vagrant_macos
+- name: Vagrant Browse repository setup
+  command: brew tap hashicorp/tap
+
+- name: Vagrant installation
+  command: brew install hashicorp/tap/hashicorp-vagrant
+
+- name: Gettting Vagrant version installed
+  command: vagrant version
+  register: vagrant_version
+
+- debug: msg="{{ vagrant_version.stdout }}"

@@ -117,6 +117,9 @@
     - role: tfenv_macos
       tags: ['tfenv_role']
       when: ansible_os_family == 'Darwin'
+    - role: vagrant_macos
+      tags: ['vagrant_role']
+      when: ansible_os_family == 'Darwin'
     - role: virtualbox_macos
       tags: ['virtualbox_role']
       when: ansible_os_family == 'Darwin'
