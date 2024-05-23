@@ -6,6 +6,9 @@
     - role: azurecli_macos
       tags: ['azurecli_role']
       when: ansible_os_family == 'Darwin'
+    - role: aws_vpn_macos
+      tags: ['aws_vpn_role']
+      when: ansible_os_family == 'Darwin'
     - role: awscli_macos
       tags: ['awscli_role']
       when: ansible_os_family == 'Darwin'

@@ -61,6 +61,7 @@ $ ansible-playbook main.yml -i hosts --list-tags
 | Application                    | Version  | SOs   |
 |--------------------------------|----------|-------|
 | AWS Cli                        | 2.x      | MacOS |
+| AWS VPN Cl                     | Latest   | MacOS |
 | Azure Cli                      | Latest   | MacOs |
 | CodeLite                       | Latest   | MacOS |
 | GVM - Golang Version Manager   | Latest   | MacOs |
