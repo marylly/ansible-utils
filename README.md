@@ -73,3 +73,4 @@ $ ansible-playbook main.yml -i hosts --list-tags
 | Terraform                      | 0.12.31  | MacOS |
 | TFEnv                          | Latest   | MacOS |
 | TFSec                          | Latest   | MacOS |
+| Vagrant                        | Latest   | MacOS |
