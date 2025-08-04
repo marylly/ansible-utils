@@ -102,6 +102,9 @@
     - role: notion_macos
       tags: ['notion_role']
       when: ansible_os_family == 'Darwin'
+    - role: zsh_ohmy_macos
+      tags: ['zsh_ohmy_role']
+      when: ansible_os_family == 'Darwin'
     - role: postman_macos
       tags: ['postman_role']
       when: ansible_os_family == 'Darwin'

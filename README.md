@@ -75,3 +75,4 @@ $ ansible-playbook main.yml -i hosts --list-tags
 | TFEnv                          | Latest   | MacOS |
 | TFSec                          | Latest   | MacOS |
 | Vagrant                        | Latest   | MacOS |
+| ZSH Oh My                      | Latest   | MacOS |

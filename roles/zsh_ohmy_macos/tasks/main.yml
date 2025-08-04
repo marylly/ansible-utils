@@ -1,0 +1,15 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for zsh_ohmy  get_url:
+- name: Download Oh my ZSH
+  get_url:
+    url:
+      https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh
+    dest: /tmp/onzshmy.sh
+    mode: 0755
+
+- name: Install Oh my ZSH
+  command: bash -c /tmp/onzshmy.sh
+
+- name: Install CoreUtils dependency
+  command: brew install coreutils
