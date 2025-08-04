@@ -2,12 +2,12 @@
 # tasks file for slack_macos
   - name: Download Slack Package
     get_url:
-      url: https://downloads.slack-edge.com/releases/macos/4.23.0/prod/universal/Slack-4.23.0-macOS.dmg
-      dest: /tmp/slack.dmg
+      url: https://downloads.slack-edge.com/desktop-releases/mac/universal/4.45.64/Slack-4.45.64-macOS.dmg
+      dest: ./slack.dmg
 
   - name: Slack package uncompress
     become: yes
-    command: hdiutil attach /tmp/slack.dmg
+    command: hdiutil attach ./slack.dmg
 
   - name: Slack package installation
     become: yes
@@ -19,5 +19,5 @@
 
   - name: Remove installation package
     file:
-      path: /tmp/slack.dmg
+      path: ./slack.dmg
       state: absent

@@ -70,6 +70,7 @@ $ ansible-playbook main.yml -i hosts --list-tags
 | NGrok                          | Latest   | MacOS |
 | Notion                         | Latest   | MacOS |
 | RVM - Ruby Version Manager     | Latest   | MacOs |
+| Slack                          | 4.45.6   | MacOs |
 | Terraform                      | 0.12.31  | MacOS |
 | TFEnv                          | Latest   | MacOS |
 | TFSec                          | Latest   | MacOS |
