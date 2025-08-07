@@ -69,6 +69,7 @@ $ ansible-playbook main.yml -i hosts --list-tags
 | Multipass                      | Latest   | MacOs |
 | NGrok                          | Latest   | MacOS |
 | Notion                         | Latest   | MacOS |
+| NVM                            | v0.40.3  | MacOS |
 | RVM - Ruby Version Manager     | Latest   | MacOs |
 | Slack                          | 4.45.6   | MacOs |
 | Terraform                      | 0.12.31  | MacOS |
