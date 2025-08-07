@@ -1,0 +1,19 @@
+---
+# tasks file for nvm_macos
+  - name: Download Talisman
+    get_url: 
+      url: https://raw.githubusercontent.com/thoughtworks/talisman/main/install.sh
+      dest: /tmp/talisman.sh
+      mode: 0755
+
+  - name: Install Talisman
+    command: sh /tmp/talisman.sh
+
+  - name: Add Talisman to bin folder terminal commands
+    command: echo 'export TALISMAN_HOME=$HOME/.talisman/bin' >> ~/.zshrc
+
+  - name: Verifing Talisman version installed
+    shell: source ~/.zshrc && talisman -v
+    register: talisman_version
+
+  - debug: msg="{{ talisman_version.stdout }}"

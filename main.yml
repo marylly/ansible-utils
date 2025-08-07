@@ -114,6 +114,9 @@
     - role: spotify_macos
       tags: ['spotify_role']
       when: ansible_os_family == 'Darwin'
+    - role: talisman_macos
+      tags: ['talisman_role']
+      when: ansible_os_family == 'Darwin'
     - role: telegram_macos
       tags: ['telegram_role']
       when: ansible_os_family == 'Darwin'
