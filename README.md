@@ -62,16 +62,17 @@ $ ansible-playbook main.yml -i hosts --list-tags
 |--------------------------------|----------|-------|
 | AWS Cli                        | 2.x      | MacOS |
 | AWS VPN Cl                     | Latest   | MacOS |
-| Azure Cli                      | Latest   | MacOs |
+| Azure Cli                      | Latest   | MacOS |
 | CodeLite                       | Latest   | MacOS |
-| GVM - Golang Version Manager   | Latest   | MacOs |
-| MicroK8S                       | Latest   | MacOs |
-| Multipass                      | Latest   | MacOs |
+| GVM - Golang Version Manager   | Latest   | MacOS |
+| MicroK8S                       | Latest   | MacOS |
+| Multipass                      | Latest   | MacOS |
 | NGrok                          | Latest   | MacOS |
 | Notion                         | Latest   | MacOS |
 | NVM                            | v0.40.3  | MacOS |
-| RVM - Ruby Version Manager     | Latest   | MacOs |
-| Slack                          | 4.45.6   | MacOs |
+| RVM - Ruby Version Manager     | Latest   | MacOS |
+| Slack                          | 4.45.6   | MacOS |
+| Talisman                       | Latest   | MacOS |
 | Terraform                      | 0.12.31  | MacOS |
 | TFEnv                          | Latest   | MacOS |
 | TFSec                          | Latest   | MacOS |
