@@ -6,11 +6,11 @@
     - role: azurecli_macos
       tags: ['azurecli_role']
       when: ansible_os_family == 'Darwin'
-    - role: aws_vpn_macos
-      tags: ['aws_vpn_role']
-      when: ansible_os_family == 'Darwin'
     - role: awscli_macos
       tags: ['awscli_role']
+      when: ansible_os_family == 'Darwin'
+    - role: aws_azure_login_macos
+      tags: ['aws_azure_login_role']
       when: ansible_os_family == 'Darwin'
     - role: bruno_apiclient_macos
       tags: ['bruno_role']
@@ -41,6 +41,9 @@
       when: ansible_os_family == 'Darwin'
     - role: iterm_macos
       tags: ['iterm_role']
+      when: ansible_os_family == 'Darwin'
+    - role: kiro_macos
+      tags: ['kiro_role']
       when: ansible_os_family == 'Darwin'
     - role: microk8s_macos
       tags: ['microk8s_role']

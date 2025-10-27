@@ -65,6 +65,7 @@ $ ansible-playbook main.yml -i hosts --list-tags
 | Azure Cli                      | Latest   | MacOS |
 | CodeLite                       | Latest   | MacOS |
 | GVM - Golang Version Manager   | Latest   | MacOS |
+| Kiro Dev                       | Latest   | MacOS |
 | MicroK8S                       | Latest   | MacOS |
 | Multipass                      | Latest   | MacOS |
 | NGrok                          | Latest   | MacOS |
