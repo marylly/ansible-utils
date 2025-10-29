@@ -1,0 +1,30 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for roles/tfsec_macos
+
+- name: Get latest tfsec release info
+  uri:
+    url: https://api.github.com/repos/aquasecurity/tfsec/releases/latest
+    method: GET
+    return_content: yes
+  register: tfsec_release
+
+- name: Set tfsec version
+  set_fact:
+    tfsec_version: "{{ tfsec_release.json.tag_name }}"
+
+- name: Download tfsec binary
+  get_url:
+    url: "https://github.com/aquasecurity/tfsec/releases/download/{{ tfsec_version }}/tfsec-darwin-amd64"
+    dest: /usr/local/bin/tfsec
+    mode: '0755'
+  become: yes
+
+- name: Verify tfsec installation
+  command: tfsec --version
+  register: tfsec_version_output
+  changed_when: false
+
+- name: Display tfsec version
+  debug:
+    msg: "tfsec version installed: {{ tfsec_version_output.stdout }}"
