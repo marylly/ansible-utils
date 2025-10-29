@@ -1,0 +1,203 @@
+---
+# tasks file for colima_macos
+
+- name: Detect system architecture
+  shell: uname -m
+  register: system_arch_raw
+  changed_when: false
+
+- name: Detect real CPU architecture (Apple Silicon detection)
+  shell: sysctl -n machdep.cpu.brand_string
+  register: cpu_brand
+  changed_when: false
+
+- name: Set real architecture based on CPU
+  set_fact:
+    system_arch: "{{ 'arm64' if 'Apple' in cpu_brand.stdout else system_arch_raw.stdout }}"
+
+- name: Set architecture for download
+  set_fact:
+    colima_arch: "{{ 'arm64' if system_arch == 'arm64' else 'x86_64' }}"
+    lima_arch: "{{ 'arm64' if system_arch == 'arm64' else 'x86_64' }}"
+
+- name: Clean existing installations
+  shell: |
+    colima stop || true
+    limactl stop --all || true
+    limactl delete --all || true
+    brew uninstall lima colima || true
+  failed_when: false
+
+- name: Remove binaries and data quickly
+  shell: |
+    sudo rm -f /usr/local/bin/limactl /usr/local/bin/lima /usr/local/bin/colima
+    rm -rf {{ ansible_env.HOME }}/.lima {{ ansible_env.HOME }}/.colima
+  failed_when: false
+
+- name: Download Lima tarball using curl
+  shell: curl -LO https://github.com/lima-vm/lima/releases/download/v1.2.1/lima-1.2.1-Darwin-{{ lima_arch }}.tar.gz
+  args:
+    chdir: /tmp
+
+- name: Extract Lima tarball
+  shell: tar -zxvf lima-1.2.1-Darwin-{{ lima_arch }}.tar.gz
+  args:
+    chdir: /tmp
+  failed_when: false
+
+- name: Download Colima binary
+  get_url:
+    url: "https://github.com/abiosoft/colima/releases/latest/download/colima-Darwin-{{ colima_arch }}"
+    dest: /tmp/colima
+    mode: 0755
+
+- name: Move Lima binaries to system location
+  shell: |
+    sudo mv /tmp/bin/limactl /usr/local/bin/
+    sudo mv /tmp/bin/lima /usr/local/bin/
+
+- name: Copy Lima share directory
+  shell: sudo cp -R /tmp/share/lima /usr/local/share/
+
+- name: Install Colima binary to system location
+  command: cp /tmp/colima /usr/local/bin/colima
+  become: yes
+
+- name: Verify Lima installation
+  shell: limactl --version
+  register: lima_version_check
+
+- name: Display Lima version
+  debug:
+    msg: "Lima version: {{ lima_version_check.stdout }}"
+
+- name: Make Colima binary executable
+  file:
+    path: "/usr/local/bin/colima"
+    mode: 0755
+  become: yes
+
+- name: Clean up temporary files
+  file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - "/tmp/lima-1.2.1-Darwin-{{ lima_arch }}.tar.gz"
+    - /tmp/colima
+    - /tmp/bin
+    - /tmp/share
+
+- name: Check if running under Rosetta
+  shell: sysctl -n sysctl.proc_translated
+  register: rosetta_check
+  failed_when: false
+
+- name: Force native architecture for Lima installation on Apple Silicon
+  shell: |
+    # Remove any existing Lima installation that might be under Rosetta
+    sudo rm -rf /usr/local/bin/lima* /usr/local/share/lima
+    # Reinstall Lima with explicit arm64 architecture for Apple Silicon
+    arch -arm64 /bin/bash -c "
+      cd /tmp
+      curl -LO https://github.com/lima-vm/lima/releases/download/v1.2.1/lima-1.2.1-Darwin-arm64.tar.gz
+      tar -zxf lima-1.2.1-Darwin-arm64.tar.gz
+      sudo cp bin/lima* /usr/local/bin/
+      sudo cp -R share/lima /usr/local/share/
+      sudo chmod +x /usr/local/bin/lima*
+    "
+  when: system_arch == 'arm64' and rosetta_check.stdout == '1'
+
+- name: Verify Colima installation
+  shell: colima version
+  register: colima_version
+
+- debug: msg="{{ colima_version.stdout }}"
+
+- name: Create Colima config directory
+  file:
+    path: "{{ ansible_env.HOME }}/.colima"
+    state: directory
+    mode: 0755
+
+- name: Create Colima default config directory
+  file:
+    path: "{{ ansible_env.HOME }}/.colima/default"
+    state: directory
+    mode: 0755
+
+- name: Create Colima configuration for Intel Macs
+  copy:
+    content: |
+      # Colima configuration for Intel Mac
+      cpu: 2
+      memory: 4
+      disk: 60
+      arch: x86_64
+      runtime: docker
+      kubernetes:
+        enabled: false
+      # Force QEMU for Intel Macs (VZ only works on Apple Silicon)
+      vmType: qemu
+      rosetta: false
+    dest: "{{ ansible_env.HOME }}/.colima/default/colima.yaml"
+    mode: 0644
+  when: system_arch == 'x86_64'
+
+- name: Create Colima configuration for Apple Silicon Macs
+  copy:
+    content: |
+      # Colima configuration for Apple Silicon Mac ({{ cpu_brand.stdout }})
+      cpu: 4
+      memory: 8
+      disk: 60
+      arch: aarch64
+      runtime: docker
+      kubernetes:
+        enabled: false
+      # Use VZ for better performance on Apple Silicon
+      vmType: vz
+      rosetta: true
+    dest: "{{ ansible_env.HOME }}/.colima/default/colima.yaml"
+    mode: 0644
+  when: system_arch == 'arm64'
+
+- name: Display final installation status
+  debug:
+    msg: |
+      ✅ Colima e Lima instalados como aplicações do sistema!
+
+      📍 Localização: /usr/local/bin/
+      - limactl (Lima VM manager)
+      - lima (Lima CLI) 
+      - colima ({{ colima_version.stdout }})
+
+      {% if system_arch == 'x86_64' %}
+      🖥️  Sistema Intel detectado - Configuração QEMU aplicada
+      
+      {% if rosetta_check.stdout == '1' %}
+      ⚠️  IMPORTANTE: Terminal sob Rosetta detectado!
+      Lima foi reinstalado com arquitetura nativa x86_64.
+      
+      Para iniciar o Colima:
+      1. Abra um novo terminal nativo (não Rosetta)
+      2. Execute: colima start --vm-type qemu
+      {% else %}
+      Para iniciar o Colima:
+      colima start --vm-type qemu
+      {% endif %}
+      {% else %}
+      🍎 Sistema Apple Silicon detectado: {{ cpu_brand.stdout }}
+      Configuração VZ aplicada (melhor performance)
+      
+      Para iniciar o Colima:
+      colima start --vm-type vz
+      
+      {% if rosetta_check.stdout == '1' %}
+      ⚠️  Terminal rodando sob Rosetta - Lima reinstalado com ARM64 nativo
+      {% endif %}
+      {% endif %}
+
+      🎯 Comandos disponíveis globalmente:
+      - colima status
+      - colima stop/start/restart  
+      - limactl list

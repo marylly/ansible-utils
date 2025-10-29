@@ -1,0 +1,7 @@
+---
+# defaults file for colima_macos
+
+# Configuração básica do Colima
+colima_cpu: 2
+colima_memory: 4
+colima_disk: 60

@@ -64,8 +64,11 @@ $ ansible-playbook main.yml -i hosts --list-tags
 | AWS VPN Cl                     | Latest   | MacOS |
 | Azure Cli                      | Latest   | MacOS |
 | CodeLite                       | Latest   | MacOS |
+| Colima                         | v0.9.1   | MacOS |
+| Docker CLI                     | 24.0.7   | MacOS |
 | GVM - Golang Version Manager   | Latest   | MacOS |
 | Kiro Dev                       | Latest   | MacOS |
+| Lima                           | 1.2.1    | MacOS |
 | MicroK8S                       | Latest   | MacOS |
 | Multipass                      | Latest   | MacOS |
 | NGrok                          | Latest   | MacOS |

@@ -18,6 +18,9 @@
     - role: codelite_macos
       tags: ['codelite_role']
       when: ansible_os_family == 'Darwin'
+    - role: colima_macos
+      tags: ['colima_role']
+      when: ansible_os_family == 'Darwin'
     - role: discord_macos
       tags: ['discord_role']
       when: ansible_os_family == 'Darwin'
