@@ -1,0 +1,33 @@
+---
+# tasks file for aws_azure_login
+- name: Check if Node.js is installed
+  command: node --version
+  register: node_check
+  failed_when: false
+  changed_when: false
+
+- name: Fail if Node.js is not installed
+  fail:
+    msg: "Node.js is required to install {{ aws_azure_login_package }}. Please install Node.js first."
+  when: node_check.rc != 0
+
+- name: Check if aws-azure-login is already installed
+  shell: npm list -g {{ aws_azure_login_package }}
+  register: aws_azure_login_check
+  failed_when: false
+  changed_when: false
+
+- name: Install aws-azure-login via npm globally
+  command: npm install -g {{ aws_azure_login_package }}
+  register: npm_install_result
+  changed_when: "'added' in npm_install_result.stdout or 'updated' in npm_install_result.stdout"
+  when: aws_azure_login_check.rc != 0 or aws_azure_login_force_install
+
+- name: Verify AWS Azure Login installation and get version
+  shell: npm list -g {{ aws_azure_login_package }} | grep {{ aws_azure_login_package }}
+  register: aws_azure_login_version
+  changed_when: false
+
+- name: Display installation result
+  debug:
+    msg: "{{ aws_azure_login_package }} installed: {{ aws_azure_login_version.stdout }}"

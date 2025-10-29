@@ -1,0 +1,26 @@
+#SPDX-License-Identifier: MIT-0
+galaxy_info:
+  author: ansible-utils
+  description: Install aws-azure-login CLI tool on macOS systems
+  company: 
+
+  license: MIT
+
+  min_ansible_version: 2.9
+
+  platforms:
+    - name: Darwin
+      versions:
+        - all
+
+  galaxy_tags:
+    - aws
+    - azure
+    - cli
+    - macos
+    - development
+    - devops
+    - authentication
+    - sso
+
+dependencies: []

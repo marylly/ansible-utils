@@ -1,0 +1,9 @@
+#SPDX-License-Identifier: MIT-0
+---
+# defaults file for aws_azure_login_role
+
+# Package name to install
+aws_azure_login_package: "aws-azure-login"
+
+# Whether to force reinstall even if already present
+aws_azure_login_force_install: false
