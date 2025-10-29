@@ -1,0 +1,21 @@
+#SPDX-License-Identifier: MIT-0
+galaxy_info:
+  author: DevOps Team
+  description: Install Bruno API Client on macOS using Homebrew
+  company: ""
+  license: MIT
+  min_ansible_version: 2.9
+  
+  platforms:
+    - name: Darwin
+      versions:
+        - all
+
+  galaxy_tags:
+    - api
+    - client
+    - bruno
+    - macos
+    - binary
+
+dependencies: []

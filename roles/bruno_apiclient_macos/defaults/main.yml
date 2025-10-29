@@ -1,0 +1,9 @@
+#SPDX-License-Identifier: MIT-0
+---
+# defaults file for bruno_apiclient_macos
+
+# Installation directory for Bruno
+bruno_install_dir: /Applications
+
+# Package state (present, latest, absent)
+bruno_package_state: present

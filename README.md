@@ -63,6 +63,7 @@ $ ansible-playbook main.yml -i hosts --list-tags
 | AWS Cli                        | 2.x      | MacOS |
 | AWS VPN Cl                     | Latest   | MacOS |
 | Azure Cli                      | Latest   | MacOS |
+| Bruno API Client               | v2.13.2  | MacOS |
 | CodeLite                       | Latest   | MacOS |
 | Colima                         | v0.9.1   | MacOS |
 | Docker CLI                     | 24.0.7   | MacOS |

@@ -1,0 +1,80 @@
+---
+- name: Check if Bruno is already installed
+  stat:
+    path: "{{ bruno_install_dir }}/Bruno.app"
+  register: bruno_installed
+
+- name: Get latest Bruno release info
+  uri:
+    url: https://api.github.com/repos/usebruno/bruno/releases/latest
+    method: GET
+    return_content: yes
+  register: bruno_release_info
+  when: not bruno_installed.stat.exists or bruno_package_state == "latest"
+
+- name: Detect system architecture
+  command: uname -m
+  register: uname_result
+  when: not bruno_installed.stat.exists or bruno_package_state == "latest"
+  changed_when: false
+
+- name: Check if running on Apple Silicon
+  command: sysctl -n machdep.cpu.brand_string
+  register: cpu_brand
+  when: not bruno_installed.stat.exists or bruno_package_state == "latest"
+  changed_when: false
+
+- name: Set system architecture (force ARM64 for Apple Silicon)
+  set_fact:
+    system_arch: "{{ 'arm64' if 'Apple' in cpu_brand.stdout else uname_result.stdout }}"
+  when: not bruno_installed.stat.exists or bruno_package_state == "latest"
+
+- name: Set architecture suffix for download
+  set_fact:
+    arch_suffix: "{{ 'arm64' if system_arch == 'arm64' else 'x64' }}"
+  when: not bruno_installed.stat.exists or bruno_package_state == "latest"
+
+- name: Set Bruno download URL for macOS
+  set_fact:
+    bruno_download_url: "{{ item.browser_download_url }}"
+  loop: "{{ bruno_release_info.json.assets }}"
+  when:
+    - not bruno_installed.stat.exists or bruno_package_state == "latest"
+    - item.name is match('.*' + arch_suffix + '_mac\\.dmg$')
+  loop_control:
+    label: "{{ item.name }}"
+
+- name: Download Bruno DMG
+  get_url:
+    url: "{{ bruno_download_url }}"
+    dest: "/tmp/bruno.dmg"
+    mode: "0644"
+  when: not bruno_installed.stat.exists or bruno_package_state == "latest"
+
+- name: Mount Bruno DMG
+  command: hdiutil attach /tmp/bruno.dmg -mountpoint /tmp/bruno_mount
+  when: not bruno_installed.stat.exists or bruno_package_state == "latest"
+
+- name: Copy Bruno.app to Applications
+  command: cp -R /tmp/bruno_mount/Bruno.app "{{ bruno_install_dir }}/"
+  when: not bruno_installed.stat.exists or bruno_package_state == "latest"
+
+- name: Unmount Bruno DMG
+  command: hdiutil detach /tmp/bruno_mount
+  when: not bruno_installed.stat.exists or bruno_package_state == "latest"
+  ignore_errors: yes
+
+- name: Clean up downloaded DMG
+  file:
+    path: /tmp/bruno.dmg
+    state: absent
+  when: not bruno_installed.stat.exists or bruno_package_state == "latest"
+
+- name: Verify Bruno installation
+  stat:
+    path: "{{ bruno_install_dir }}/Bruno.app/Contents/MacOS/Bruno"
+  register: bruno_executable
+
+- name: Display installation status
+  debug:
+    msg: "Bruno API Client {{ 'successfully installed' if bruno_executable.stat.exists else 'installation failed' }}"
