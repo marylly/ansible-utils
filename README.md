@@ -58,28 +58,29 @@ $ ansible-playbook main.yml -i hosts --list-tags
 
 ## Applications Available
 
-| Application                    | Version  | SOs   |
-|--------------------------------|----------|-------|
-| AWS Cli                        | 2.x      | MacOS |
-| AWS VPN Cl                     | Latest   | MacOS |
-| Azure Cli                      | Latest   | MacOS |
-| Bruno API Client               | v2.13.2  | MacOS |
-| CodeLite                       | Latest   | MacOS |
-| Colima                         | v0.9.1   | MacOS |
-| Docker CLI                     | 24.0.7   | MacOS |
-| GVM - Golang Version Manager   | Latest   | MacOS |
-| Kiro Dev                       | Latest   | MacOS |
-| Lima                           | 1.2.1    | MacOS |
-| MicroK8S                       | Latest   | MacOS |
-| Multipass                      | Latest   | MacOS |
-| NGrok                          | Latest   | MacOS |
-| Notion                         | Latest   | MacOS |
-| NVM                            | v0.40.3  | MacOS |
-| RVM - Ruby Version Manager     | Latest   | MacOS |
-| Slack                          | 4.45.6   | MacOS |
-| Talisman                       | Latest   | MacOS |
-| Terraform                      | 0.12.31  | MacOS |
-| TFEnv                          | Latest   | MacOS |
-| TFSec                          | Latest   | MacOS |
-| Vagrant                        | Latest   | MacOS |
-| ZSH Oh My                      | Latest   | MacOS |
+| Application                  | Version | SOs   |
+| ---------------------------- | ------- | ----- |
+| AWS Azure Login              | Latest  | MacOS |
+| AWS Cli                      | 2.x     | MacOS |
+| AWS VPN Cl                   | Latest  | MacOS |
+| Azure Cli                    | Latest  | MacOS |
+| Bruno API Client             | v2.13.2 | MacOS |
+| CodeLite                     | Latest  | MacOS |
+| Colima                       | v0.9.1  | MacOS |
+| Docker CLI                   | 24.0.7  | MacOS |
+| GVM - Golang Version Manager | Latest  | MacOS |
+| Kiro Dev                     | Latest  | MacOS |
+| Lima                         | 1.2.1   | MacOS |
+| MicroK8S                     | Latest  | MacOS |
+| Multipass                    | Latest  | MacOS |
+| NGrok                        | Latest  | MacOS |
+| Notion                       | Latest  | MacOS |
+| NVM                          | v0.40.3 | MacOS |
+| RVM - Ruby Version Manager   | Latest  | MacOS |
+| Slack                        | 4.45.6  | MacOS |
+| Talisman                     | Latest  | MacOS |
+| Terraform                    | 0.12.31 | MacOS |
+| TFEnv                        | Latest  | MacOS |
+| TFSec                        | Latest  | MacOS |
+| Vagrant                      | Latest  | MacOS |
+| ZSH Oh My                    | Latest  | MacOS |
