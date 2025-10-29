@@ -1,25 +1,94 @@
 ---
 # tasks file for docker_macos
-  - name: Download Docker Package
-    get_url:
-      url: https://desktop.docker.com/mac/main/amd64/Docker.dmg
-      dest: /tmp/Docker.dmg
 
-  - name: Docker package uncompress
-    become: yes
-    command: hdiutil attach /tmp/Docker.dmg
+- name: Detect system architecture
+  shell: uname -m
+  register: system_arch_raw
+  changed_when: false
 
-  - name: Docker package installation
-    become: yes
-    command: cp -r /Volumes/Docker/Docker.app /Applications
+- name: Detect real CPU architecture (Apple Silicon detection)
+  shell: sysctl -n machdep.cpu.brand_string
+  register: cpu_brand
+  changed_when: false
 
-  - name: Remove installation package
-    file:
-      path: /tmp/Docker.dmg
-      state: absent
+- name: Set real architecture based on CPU
+  set_fact:
+    system_arch: "{{ 'arm64' if 'Apple' in cpu_brand.stdout else system_arch_raw.stdout }}"
 
-  - name: Verifing Docker version installed
-    command: docker version
-    register: docker_version
+- name: Set Docker CLI download URL based on architecture
+  set_fact:
+    docker_cli_url: "{{ 'https://download.docker.com/mac/static/stable/aarch64/docker-24.0.7.tgz' if system_arch == 'arm64' else 'https://download.docker.com/mac/static/stable/x86_64/docker-24.0.7.tgz' }}"
+    docker_arch: "{{ 'aarch64' if system_arch == 'arm64' else 'x86_64' }}"
 
-  - debug: msg="{{ docker_version.stdout }}"
+- name: Check if Docker CLI is already installed
+  stat:
+    path: /usr/local/bin/docker
+  register: docker_cli_exists
+
+- name: Download Docker CLI package
+  get_url:
+    url: "{{ docker_cli_url }}"
+    dest: /tmp/docker-24.0.7.tgz
+  when: not docker_cli_exists.stat.exists
+
+- name: Extract Docker CLI package
+  shell: tar -zxvf /tmp/docker-24.0.7.tgz
+  args:
+    chdir: /tmp
+  when: not docker_cli_exists.stat.exists
+
+- name: Install Docker CLI binaries to system location
+  become: yes
+  shell: |
+    cp /tmp/docker/docker /usr/local/bin/
+    chmod +x /usr/local/bin/docker
+  when: not docker_cli_exists.stat.exists
+
+- name: Clean up temporary files
+  file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - /tmp/docker-24.0.7.tgz
+    - /tmp/docker
+  when: not docker_cli_exists.stat.exists
+
+- name: Verify Docker CLI installation
+  shell: docker --version
+  register: docker_version_check
+  failed_when: false
+
+- name: Test Colima compatibility
+  shell: colima version
+  register: colima_version_check
+  failed_when: false
+
+- name: Display Docker CLI installation status
+  debug:
+    msg: |
+      {% if docker_cli_exists.stat.exists %}
+      ✅ Docker CLI já estava instalado em /usr/local/bin/docker
+      {% else %}
+      ✅ Docker CLI instalado com sucesso em /usr/local/bin/docker
+      {% endif %}
+      
+      {% if docker_version_check.rc == 0 %}
+      🐳 Docker CLI: {{ docker_version_check.stdout }}
+      {% else %}
+      ❌ Erro na verificação do Docker CLI
+      {% endif %}
+      
+      {% if colima_version_check.rc == 0 %}
+      🚀 Colima detectado: {{ colima_version_check.stdout }}
+      
+      ✅ Agora você pode usar:
+      - colima start
+      - docker ps (após colima start)
+      {% else %}
+      ⚠️  Colima não encontrado. Instale com: brew install colima
+      {% endif %}
+      
+      🎯 Arquitetura: {{ system_arch }} ({{ docker_arch }})
+      💻 CPU: {{ cpu_brand.stdout }}
+      📦 Pacote: Docker CLI 24.0.7
+      📍 Binário: /usr/local/bin/docker
