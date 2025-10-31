@@ -1,0 +1,10 @@
+---
+# handlers file for docker_compose_macos
+
+- name: verify docker compose installation
+  ansible.builtin.command:
+    cmd: "{{ docker_compose_install_dir }}/{{ docker_compose_binary_name }} version"
+  register: docker_compose_handler_verify
+  changed_when: false
+  failed_when: docker_compose_handler_verify.rc != 0
+  listen: "verify docker compose installation"

@@ -1,0 +1,16 @@
+---
+# vars file for docker_compose_macos
+
+# macOS specific variables
+macos_supported_versions:
+  - "10.15"  # Catalina
+  - "11.0"   # Big Sur
+  - "12.0"   # Monterey
+  - "13.0"   # Ventura
+  - "14.0"   # Sonoma
+  - "15.0"   # Sequoia
+
+# Apple Silicon architectures supported
+supported_architectures:
+  - "arm64"
+  - "aarch64"

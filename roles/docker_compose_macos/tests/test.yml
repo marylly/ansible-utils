@@ -1,0 +1,19 @@
+---
+- hosts: localhost
+  remote_user: root
+  become: true
+  vars:
+    docker_compose_version: "v2.29.7"
+  roles:
+    - docker_compose_macos
+  
+  post_tasks:
+    - name: Test Docker Compose installation
+      ansible.builtin.command:
+        cmd: docker-compose version
+      register: test_result
+      changed_when: false
+      
+    - name: Display test result
+      ansible.builtin.debug:
+        msg: "Docker Compose test successful: {{ test_result.stdout_lines[0] }}"

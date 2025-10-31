@@ -1,0 +1,77 @@
+---
+# tasks file for docker_compose_macos
+
+- name: Check if running on macOS
+  ansible.builtin.fail:
+    msg: "Esta role é apenas para macOS"
+  when: ansible_os_family != 'Darwin'
+
+- name: Check if Docker Compose is already installed
+  ansible.builtin.stat:
+    path: "{{ docker_compose_install_dir }}/{{ docker_compose_binary_name }}"
+  register: docker_compose_installed
+  become: false
+
+- name: Get current Docker Compose version if installed
+  ansible.builtin.command:
+    cmd: "{{ docker_compose_install_dir }}/{{ docker_compose_binary_name }} version --short"
+  register: current_docker_compose_version
+  when: docker_compose_installed.stat.exists
+  failed_when: false
+  changed_when: false
+  become: false
+
+- name: Display current Docker Compose version
+  ansible.builtin.debug:
+    msg: "Docker Compose já instalado: {{ current_docker_compose_version.stdout }}"
+  when: docker_compose_installed.stat.exists and current_docker_compose_version.rc == 0
+
+- name: Check if update is needed
+  ansible.builtin.set_fact:
+    docker_compose_needs_update: >-
+      {{
+        not docker_compose_installed.stat.exists or
+        (current_docker_compose_version.rc == 0 and 
+         docker_compose_version not in current_docker_compose_version.stdout)
+      }}
+
+- name: Download Docker Compose binary
+  ansible.builtin.get_url:
+    url: "{{ docker_compose_download_url }}"
+    dest: "{{ docker_compose_temp_dir }}/{{ docker_compose_binary_name }}"
+    mode: "0755"
+    timeout: 300
+  when: docker_compose_needs_update
+  register: docker_compose_download
+  become: false
+
+- name: Install Docker Compose binary
+  ansible.builtin.copy:
+    src: "{{ docker_compose_temp_dir }}/{{ docker_compose_binary_name }}"
+    dest: "{{ docker_compose_install_dir }}/{{ docker_compose_binary_name }}"
+    mode: "0755"
+    owner: root
+    group: wheel
+    remote_src: true
+  become: true
+  when: docker_compose_needs_update and docker_compose_download is succeeded
+  notify: verify docker compose installation
+
+- name: Clean up temporary files
+  ansible.builtin.file:
+    path: "{{ docker_compose_temp_dir }}/{{ docker_compose_binary_name }}"
+    state: absent
+  when: docker_compose_needs_update
+  become: false
+
+- name: Verify Docker Compose installation
+  ansible.builtin.command:
+    cmd: "{{ docker_compose_install_dir }}/{{ docker_compose_binary_name }} version"
+  register: docker_compose_verify
+  changed_when: false
+  failed_when: docker_compose_verify.rc != 0
+  become: false
+
+- name: Display installed Docker Compose version
+  ansible.builtin.debug:
+    msg: "Docker Compose instalado com sucesso: {{ docker_compose_verify.stdout_lines[0] }}"

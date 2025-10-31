@@ -1,0 +1,20 @@
+---
+# defaults file for docker_compose_macos
+
+# Docker Compose version to install
+docker_compose_version: "v2.29.7"
+
+# Architecture for Apple Silicon M4 Max
+docker_compose_arch: "darwin-aarch64"
+
+# Installation directory
+docker_compose_install_dir: "/usr/local/bin"
+
+# Binary name
+docker_compose_binary_name: "docker-compose"
+
+# Download URL template
+docker_compose_download_url: "https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-{{ docker_compose_arch }}"
+
+# Temporary download directory
+docker_compose_temp_dir: "/tmp"

@@ -68,6 +68,7 @@ $ ansible-playbook main.yml -i hosts --list-tags
 | CodeLite                     | Latest  | MacOS |
 | Colima                       | v0.9.1  | MacOS |
 | Docker CLI                   | 24.0.7  | MacOS |
+| Docker Compose               | v2.29.7 | MacOS |
 | GVM - Golang Version Manager | Latest  | MacOS |
 | Kiro Dev                     | Latest  | MacOS |
 | Lima                         | 1.2.1   | MacOS |
