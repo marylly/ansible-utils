@@ -70,6 +70,7 @@ $ ansible-playbook main.yml -i hosts --list-tags
 | Docker CLI                   | 24.0.7  | MacOS |
 | Docker Compose               | v2.29.7 | MacOS |
 | GVM - Golang Version Manager | Latest  | MacOS |
+| JVM - OpenJDK                | 21.0.5  | MacOS |
 | Kiro Dev                     | Latest  | MacOS |
 | Lima                         | 1.2.1   | MacOS |
 | MicroK8S                     | Latest  | MacOS |

@@ -1,0 +1,10 @@
+---
+# handlers file for jvm_macos
+
+- name: verify jdk installation
+  ansible.builtin.command:
+    cmd: java -version
+  register: jdk_handler_verify
+  changed_when: false
+  failed_when: jdk_handler_verify.rc != 0
+  listen: "verify jdk installation"

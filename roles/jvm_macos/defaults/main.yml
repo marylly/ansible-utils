@@ -1,0 +1,22 @@
+---
+# defaults file for jvm_macos
+
+# OpenJDK version to install
+jdk_version: "21.0.5"
+jdk_build: "11"
+
+# Architecture for Apple Silicon M4 Max
+jdk_arch: "aarch64"
+
+# Installation directory
+jdk_install_dir: "/Library/Java/JavaVirtualMachines"
+
+# Binary name and directory
+jdk_binary_name: "OpenJDK21U-jdk_{{ jdk_arch }}_mac_hotspot_{{ jdk_version }}_{{ jdk_build }}.tar.gz"
+jdk_folder_name: "jdk-{{ jdk_version }}+{{ jdk_build }}"
+
+# Download URL (Eclipse Temurin)
+jdk_download_url: "https://github.com/adoptium/temurin21-binaries/releases/download/jdk-{{ jdk_version }}%2B{{ jdk_build }}/{{ jdk_binary_name }}"
+
+# Temporary download directory
+jdk_temp_dir: "{{ ansible_env.HOME }}/Downloads"

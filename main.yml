@@ -105,6 +105,9 @@
     - role: java_macos
       tags: ["java_role"]
       when: ansible_os_family == 'Darwin'
+    - role: jvm_macos
+      tags: ["jvm_role"]
+      when: ansible_os_family == 'Darwin'
     - role: nvm_macos
       tags: ["nvm_role"]
       when: ansible_os_family == 'Darwin'

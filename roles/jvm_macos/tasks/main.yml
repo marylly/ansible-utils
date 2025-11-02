@@ -1,0 +1,108 @@
+---
+# tasks file for jvm_macos
+
+- name: Check if running on macOS
+  ansible.builtin.fail:
+    msg: "Esta role é apenas para macOS"
+  when: ansible_os_family != 'Darwin'
+
+- name: Check if Java is already installed
+  ansible.builtin.command:
+    cmd: java -version
+  register: java_installed
+  failed_when: false
+  changed_when: false
+  become: false
+
+- name: Display current Java version if installed
+  ansible.builtin.debug:
+    msg: "Java já instalado: {{ java_installed.stderr_lines[0] }}"
+  when: java_installed.rc == 0 and java_installed.stderr_lines | length > 0
+
+- name: Check if JDK update is needed
+  ansible.builtin.set_fact:
+    jdk_needs_install: >-
+      {{
+        java_installed.rc != 0 or
+        (java_installed.rc == 0 and jdk_version not in java_installed.stderr)
+      }}
+
+- name: Download OpenJDK binary
+  ansible.builtin.get_url:
+    url: "{{ jdk_download_url }}"
+    dest: "{{ jdk_temp_dir }}/{{ jdk_binary_name }}"
+    timeout: 600
+  when: jdk_needs_install
+  register: jdk_download
+  become: false
+
+- name: Extract JDK archive to temp directory
+  ansible.builtin.shell:
+    cmd: "cd {{ jdk_temp_dir }} && tar -xzf {{ jdk_binary_name }}"
+  when: jdk_needs_install and jdk_download is succeeded
+  become: false
+
+- name: Install JDK to system directory
+  ansible.builtin.command:
+    cmd: "cp -R {{ jdk_temp_dir }}/{{ jdk_folder_name }}/Contents {{ jdk_install_dir }}/{{ jdk_folder_name }}.jdk/"
+  when: jdk_needs_install
+  become: true
+  notify: verify jdk installation
+
+- name: Create JDK directory structure
+  ansible.builtin.file:
+    path: "{{ jdk_install_dir }}/{{ jdk_folder_name }}.jdk"
+    state: directory
+    mode: "0755"
+    owner: root
+    group: wheel
+  when: jdk_needs_install
+  become: true
+
+- name: Move JDK contents to proper location
+  ansible.builtin.shell:
+    cmd: "mv {{ jdk_temp_dir }}/{{ jdk_folder_name }}/* {{ jdk_install_dir }}/{{ jdk_folder_name }}.jdk/"
+  when: jdk_needs_install
+  become: true
+
+- name: Set proper permissions on JDK installation
+  ansible.builtin.file:
+    path: "{{ jdk_install_dir }}/{{ jdk_folder_name }}.jdk"
+    owner: root
+    group: wheel
+    recurse: true
+  when: jdk_needs_install
+  become: true
+
+- name: Add Java to PATH via /etc/paths.d
+  ansible.builtin.copy:
+    content: "{{ jdk_install_dir }}/{{ jdk_folder_name }}.jdk/Contents/Home/bin"
+    dest: "/etc/paths.d/java"
+    mode: "0644"
+    owner: root
+    group: wheel
+  when: jdk_needs_install
+  become: true
+
+- name: Clean up temporary files
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - "{{ jdk_temp_dir }}/{{ jdk_binary_name }}"
+    - "{{ jdk_temp_dir }}/{{ jdk_folder_name }}"
+  when: jdk_needs_install
+  become: false
+
+- name: Verify Java installation
+  ansible.builtin.command:
+    cmd: "{{ jdk_install_dir }}/{{ jdk_folder_name }}.jdk/Contents/Home/bin/java -version"
+  register: java_verify
+  changed_when: false
+  failed_when: java_verify.rc != 0
+  become: false
+
+- name: Display installed Java version
+  ansible.builtin.debug:
+    msg: "Java instalado com sucesso: {{ java_verify.stderr_lines[0] }}"
+  when: java_verify.stderr_lines | length > 0
