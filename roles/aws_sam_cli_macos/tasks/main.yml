@@ -1,0 +1,50 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for aws_sam_cli_macos
+
+- name: Check if AWS SAM CLI is already installed
+  command: sam --version
+  register: sam_version_check
+  failed_when: false
+  changed_when: false
+
+- name: Display current SAM CLI version if installed
+  debug:
+    msg: "AWS SAM CLI is already installed: {{ sam_version_check.stdout }}"
+  when: sam_version_check.rc == 0
+
+- name: Install AWS SAM CLI
+  block:
+    - name: Create temporary directory for SAM CLI installation
+      tempfile:
+        state: directory
+        suffix: sam_cli
+      register: temp_dir
+
+    - name: Download AWS SAM CLI installer
+      get_url:
+        url: "{{ sam_cli_download_url }}"
+        dest: "{{ temp_dir.path }}/aws-sam-cli-macos.pkg"
+        mode: '0644'
+
+    - name: Install AWS SAM CLI from package
+      command: installer -pkg "{{ temp_dir.path }}/aws-sam-cli-macos.pkg" -target /
+      become: yes
+
+    - name: Verify AWS SAM CLI installation
+      command: sam --version
+      register: sam_version_final
+      changed_when: false
+
+    - name: Display installed SAM CLI version
+      debug:
+        msg: "AWS SAM CLI installed successfully: {{ sam_version_final.stdout }}"
+
+  always:
+    - name: Clean up temporary directory
+      file:
+        path: "{{ temp_dir.path }}"
+        state: absent
+      when: temp_dir is defined
+
+  when: sam_version_check.rc != 0 or sam_cli_force_install

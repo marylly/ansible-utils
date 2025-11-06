@@ -1,0 +1,9 @@
+#SPDX-License-Identifier: MIT-0
+---
+# defaults file for aws_sam_cli_macos
+
+# AWS SAM CLI download URL for macOS
+sam_cli_download_url: "https://github.com/aws/aws-sam-cli/releases/latest/download/aws-sam-cli-macos-x86_64.pkg"
+
+# Force reinstallation even if SAM CLI is already installed
+sam_cli_force_install: false

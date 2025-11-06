@@ -12,9 +12,9 @@ This repository is organized into `roles` folder to each application installatio
 
 You're gonna need this tools to use this project:
 
-* [PyEnv 2.3.x](https://github.com/pyenv/pyenv) or greater (Optional)
-* [Python 3.8.x](https://www.python.org/downloads/release/python-380/)
-* [Ansible 2.10](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html) or greater
+- [PyEnv 2.3.x](https://github.com/pyenv/pyenv) or greater (Optional)
+- [Python 3.8.x](https://www.python.org/downloads/release/python-380/)
+- [Ansible 2.10](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html) or greater
 
 ## Commands
 
@@ -62,6 +62,7 @@ $ ansible-playbook main.yml -i hosts --list-tags
 | ---------------------------- | ------- | ----- |
 | AWS Azure Login              | Latest  | MacOS |
 | AWS Cli                      | 2.x     | MacOS |
+| AWS SAM CLI                  | 1.145.2 | MacOS |
 | AWS VPN Cl                   | Latest  | MacOS |
 | Azure Cli                    | Latest  | MacOS |
 | Bruno API Client             | v2.13.2 | MacOS |

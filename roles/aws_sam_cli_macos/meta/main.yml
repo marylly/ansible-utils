@@ -1,0 +1,26 @@
+#SPDX-License-Identifier: MIT-0
+galaxy_info:
+  author: DevOps Team
+  description: Instala o AWS SAM CLI no macOS utilizando o instalador binário oficial
+  company: ""
+
+  license: MIT
+
+  min_ansible_version: 2.9
+
+  platforms:
+    - name: MacOSX
+      versions:
+        - all
+
+  galaxy_tags:
+    - aws
+    - sam
+    - cli
+    - serverless
+    - macos
+    - development
+
+dependencies: []
+  # List your role dependencies here, one per line. Be sure to remove the '[]' above,
+  # if you add dependencies to this list.

@@ -11,6 +11,9 @@
     - role: aws_azure_login_macos
       tags: ["aws_azure_login_role"]
       when: ansible_os_family == 'Darwin'
+    - role: aws_sam_cli_macos
+      tags: ["aws_sam_cli_role"]
+      when: ansible_os_family == 'Darwin'
     - role: bruno_apiclient_macos
       tags: ["bruno_role"]
       when: ansible_os_family == 'Darwin'
